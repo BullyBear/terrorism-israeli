@@ -1,0 +1,430 @@
+var spiralData = 
+
+[
+  {
+    "Date": 1948,
+    "Killed": 379,
+    "injured": 397,
+    "attacks": 8
+  },
+  {
+    "Date": 1949,
+    "Killed": 37,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1950,
+    "Killed": 52,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1951,
+    "Killed": 41,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1952,
+    "Killed": 40,
+    "injured": 0,
+    "attacks": 1
+  },
+  {
+    "Date": 1953,
+    "Killed": 46,
+    "injured": 3,
+    "attacks": 3
+  },
+  {
+    "Date": 1954,
+    "Killed": 41,
+    "injured": 2,
+    "attacks": 1
+  },
+  {
+    "Date": 1955,
+    "Killed": 30,
+    "injured": 18,
+    "attacks": 2
+  },
+  {
+    "Date": 1956,
+    "Killed": 53,
+    "injured": 30,
+    "attacks": 11
+  },
+  {
+    "Date": 1957,
+    "Killed": 19,
+    "injured": 2,
+    "attacks": 6
+  },
+  {
+    "Date": 1958,
+    "Killed": 15,
+    "injured": 31,
+    "attacks": 6
+  },
+  {
+    "Date": 1959,
+    "Killed": 10,
+    "injured": 0,
+    "attacks": 7
+  },
+  {
+    "Date": 1960,
+    "Killed": 11,
+    "injured": 0,
+    "attacks": 1
+  },
+  {
+    "Date": 1961,
+    "Killed": 8,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1962,
+    "Killed": 10,
+    "injured": 1,
+    "attacks": 1
+  },
+  {
+    "Date": 1963,
+    "Killed": 7,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1964,
+    "Killed": 9,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1965,
+    "Killed": 10,
+    "injured": 4,
+    "attacks": 3
+  },
+  {
+    "Date": 1966,
+    "Killed": 10,
+    "injured": 3,
+    "attacks": 4
+  },
+  {
+    "Date": 1967,
+    "Killed": 16,
+    "injured": 0,
+    "attacks": 0
+  },
+  {
+    "Date": 1968,
+    "Killed": 55,
+    "injured": 221,
+    "attacks": 8
+  },
+  {
+    "Date": 1969,
+    "Killed": 33,
+    "injured": 133,
+    "attacks": 12
+  },
+  {
+    "Date": 1970,
+    "Killed": 74,
+    "injured": 63,
+    "attacks": 5
+  },
+  {
+    "Date": 1971,
+    "Killed": 18,
+    "injured": 36,
+    "attacks": 2
+  },
+  {
+    "Date": 1972,
+    "Killed": 46,
+    "injured": "",
+    "attacks": 7
+  },
+  {
+    "Date": 1973,
+    "Killed": 27,
+    "injured": "",
+    "attacks": 1
+  },
+  {
+    "Date": 1974,
+    "Killed": 67,
+    "injured": "",
+    "attacks": 11
+  },
+  {
+    "Date": 1975,
+    "Killed": 39,
+    "injured": "",
+    "attacks": 19
+  },
+  {
+    "Date": 1976,
+    "Killed": 14,
+    "injured": "",
+    "attacks": 10
+  },
+  {
+    "Date": 1977,
+    "Killed": 9,
+    "injured": "",
+    "attacks": 22
+  },
+  {
+    "Date": 1978,
+    "Killed": 57,
+    "injured": "",
+    "attacks": 11
+  },
+  {
+    "Date": 1979,
+    "Killed": 10,
+    "injured": "",
+    "attacks": 32
+  },
+  {
+    "Date": 1980,
+    "Killed": 16,
+    "injured": "",
+    "attacks": 22
+  },
+  {
+    "Date": 1981,
+    "Killed": 14,
+    "injured": "",
+    "attacks": 11
+  },
+  {
+    "Date": 1982,
+    "Killed": 6,
+    "injured": "",
+    "attacks": 2
+  },
+  {
+    "Date": 1983,
+    "Killed": 21,
+    "injured": "",
+    "attacks": 4
+  },
+  {
+    "Date": 1984,
+    "Killed": 9,
+    "injured": "",
+    "attacks": 10
+  },
+  {
+    "Date": 1985,
+    "Killed": 27,
+    "injured": "",
+    "attacks": 22
+  },
+  {
+    "Date": 1986,
+    "Killed": 14,
+    "injured": "",
+    "attacks": 17
+  },
+  {
+    "Date": 1987,
+    "Killed": 11,
+    "injured": "",
+    "attacks": 16
+  },
+  {
+    "Date": 1988,
+    "Killed": 16,
+    "injured": "",
+    "attacks": 9
+  },
+  {
+    "Date": 1989,
+    "Killed": 40,
+    "injured": "",
+    "attacks": 10
+  },
+  {
+    "Date": 1990,
+    "Killed": 33,
+    "injured": "",
+    "attacks": 8
+  },
+  {
+    "Date": 1991,
+    "Killed": 21,
+    "injured": "",
+    "attacks": 12
+  },
+  {
+    "Date": 1992,
+    "Killed": 34,
+    "injured": "",
+    "attacks": 10
+  },
+  {
+    "Date": 1993,
+    "Killed": 45,
+    "injured": "",
+    "attacks": 26
+  },
+  {
+    "Date": 1994,
+    "Killed": 65,
+    "injured": "",
+    "attacks": 42
+  },
+  {
+    "Date": 1995,
+    "Killed": 29,
+    "injured": "",
+    "attacks": 17
+  },
+  {
+    "Date": 1996,
+    "Killed": 56,
+    "injured": 330,
+    "attacks": 15
+  },
+  {
+    "Date": 1997,
+    "Killed": 41,
+    "injured": 439,
+    "attacks": 10
+  },
+  {
+    "Date": 1998,
+    "Killed": 16,
+    "injured": 38,
+    "attacks": 21
+  },
+  {
+    "Date": 1999,
+    "Killed": 8,
+    "injured": 2,
+    "attacks": 6
+  },
+  {
+    "Date": 2000,
+    "Killed": 44,
+    "injured": "263 (87)",
+    "attacks": 29
+  },
+  {
+    "Date": 2001,
+    "Killed": 207,
+    "injured": "1,548 (1,394)",
+    "attacks": 118
+  },
+  {
+    "Date": 2002,
+    "Killed": 452,
+    "injured": "2,284 (2,100)",
+    "attacks": 135
+  },
+  {
+    "Date": 2003,
+    "Killed": 208,
+    "injured": "1,002 (858)",
+    "attacks": 67
+  },
+  {
+    "Date": 2004,
+    "Killed": 117,
+    "injured": "663 (404)",
+    "attacks": 45
+  },
+  {
+    "Date": 2005,
+    "Killed": 56,
+    "injured": "504 (383)",
+    "attacks": 28
+  },
+  {
+    "Date": 2006,
+    "Killed": 30,
+    "injured": "383 (1,010)",
+    "attacks": 48
+  },
+  {
+    "Date": 2007,
+    "Killed": 13,
+    "injured": "462 (0)",
+    "attacks": 10
+  },
+  {
+    "Date": 2008,
+    "Killed": 36,
+    "injured": "679 (449)",
+    "attacks": 30
+  },
+  {
+    "Date": 2009,
+    "Killed": 15,
+    "injured": "234 (24)",
+    "attacks": 14
+  },
+  {
+    "Date": 2010,
+    "Killed": 11,
+    "injured": "29 (3)",
+    "attacks": 7
+  },
+  {
+    "Date": 2011,
+    "Killed": 22,
+    "injured": "159 (93)",
+    "attacks": 11
+  },
+  {
+    "Date": 2012,
+    "Killed": 10,
+    "injured": "309 (15)",
+    "attacks": 9
+  },
+  {
+    "Date": 2013,
+    "Killed": 6,
+    "injured": "44 (13)",
+    "attacks": 11
+  },
+  {
+    "Date": 2014,
+    "Killed": 25,
+    "injured": "66 (85)",
+    "attacks": 62
+  },
+  {
+    "Date": 2015,
+    "Killed": 83,
+    "injured": 251,
+    "attacks": 108
+  },
+  {
+    "Date": 2016,
+    "Killed": 90,
+    "injured": 381,
+    "attacks": 122
+  },
+  {
+    "Date": 2017,
+    "Killed": 34,
+    "injured": 45,
+    "attacks": 25
+  },
+  {
+    "Date": 2018,
+    "Killed": 6,
+    "injured": 2,
+    "attacks": 4
+  }
+]

@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "latitude": 32.077536, "longitude": 34.768636, "time": 1, "id": "route2", "name":"Stop 1" }, "geometry": { "type": "Point", "coordinates": [ 34.768636, 32.077536 ] } },
+
+{ "type": "Feature", "properties": { "latitude": 32.075878, "longitude": 34.771744, "time": 2, "id": "route2", "name":"Stop 2" }, "geometry": { "type": "Point", "coordinates": [ 34.771744, 32.075878 ] } },
+
+{ "type": "Feature", "properties": { "latitude": 32.078019, "longitude": 34.774207, "time": 3, "id": "route2", "name":"Stop 3"   }, "geometry": { "type": "Point", "coordinates": [ 34.774207, 32.078019 ] } }
+]
+}
+

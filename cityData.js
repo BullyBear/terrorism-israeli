@@ -1,0 +1,48 @@
+var cityData = [
+  {
+    "rank_pop": 0,
+    "region": "Israel Total",
+    "incidents": 729,
+    "fatalities": 1414,
+    "injuries": 6341,
+    "Latitude": 31.0461,
+    "Longitude": 34.8516,
+  },
+  {
+    "rank_pop": 1,
+    "region": "Jerusalem",
+    "incidents": 228,
+    "fatalities": 491,
+    "injuries": 3473,
+    "Latitude": 31.7683,
+    "Longitude": 35.2137,
+  },
+  {
+    "rank_pop": 2,
+    "region": "Tel Aviv",
+    "incidents": 68,
+    "fatalities": 259,
+    "injuries": 1550,
+    "Latitude": 32.0853,
+    "Longitude": 34.7818,
+  },
+  {
+    "rank_pop": 3,
+    "region": "Gaza",
+    "incidents": 111,
+    "fatalities": 205,
+    "injuries": 363,
+    "Latitude": 31.4167,
+    "Longitude": 34.3333,
+  },
+
+  {
+    "rank_pop": 4,
+    "region": "West Bank",
+    "incidents": 322,
+    "fatalities": 459,
+    "injuries": 955,
+    "Latitude": 32.0000,
+    "Longitude": 35.3833,
+  },
+]
