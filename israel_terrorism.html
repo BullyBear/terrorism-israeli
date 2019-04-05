@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title> Terrorism in Israel </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="https://d3js.org/topojson.v1.min.js"></script>
 
-    <!--<script src="jquery-3.3.1.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.7/crossfilter.js"></script>
-    <script src="{{ url_for('static', filename='js/graph-scroll.js') }}"></script>
-    <!--<script src="{{ url_for('static', filename='js/index.js') }}"></script>-->
-    <!--<script src="{{ url_for('static', filename='js/d3v4+jetpack.js') }}"></script>--> 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link href='../static/data/israel/israel_terrorism.css' rel='stylesheet' type='text/css'>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Terrorism in Israel </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+  <!--<script src="jquery-3.3.1.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.7/crossfilter.js"></script>
+  <script src="{{ url_for('static', filename='js/graph-scroll.js') }}"></script>
+  <!--<script src="{{ url_for('static', filename='js/index.js') }}"></script>-->
+  <!--<script src="{{ url_for('static', filename='js/d3v4+jetpack.js') }}"></script>-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link href='../static/data/israel/israel_terrorism.css' rel='stylesheet' type='text/css'>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="../static/data/israel/convertedData.js"></script>
     <script src="../static/data/israel/convertedDataTwo.js"></script>
     <script src="../static/data/israel/cityData.js"></script>
@@ -31,119 +33,132 @@
     <script src="../static/data/israel/fatalitiesData.js"></script>
     <script src="../static/data/israel/injuriesData.js"></script>
     <script src="../static/data/israel/spiralData.js"></script>
-    <script src="../static/data/israel/spiralDataTwo.js"></script>  
+    <script src="../static/data/israel/spiralDataTwo.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123293070-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-123293070-2');
+  </script>
+
 </head>
 
 
 <body>
 
-
 {% block content %} 
 
 
-<!-- Header -->
+  <!-- Header -->
 
-<div class="contained" id="main-header-title" style="width: 100%;">
+  <div class="contained" id="main-header-title" style="width: 100%;">
 
-<!--
+    <!--
 <div class="video" style="oveflow:hidden; width: 100%; height:425px;">
-<video src="../static/data/israel/jerusalem.mp4" loop="true" muted="true" playsinline="true"></video>
+<video src="jerusalem.mp4" loop="true" muted="true" playsinline="true"></video>
 </div>
 -->
 
-<video id="jerusalem" width="100%" height="1000" autoplay loop muted>
-  <source src="../static/data/israel/jerusalem.mp4" type="video/mp4">
-</video>
-
-<div class="gradient" style="position: absolute; top: 0px; left: 0px;
+    <video id="jerusalem" width="100%" autoplay loop muted>
+      <source src="../static/data/israel/jerusalem.mp4" type="video/mp4">
+    </video>
+    <div class="gradient" style="position: absolute; top: 0px; left: 0px;
 width: 100%; height: 100%; pointer-events: none;">
-</div>
+    </div>
 
-<!--
+    <!--
 <div class="titles" style="position:absolute; left: 50%; bottom: 5%;
 transform: translateX(-50%);">
 -->
 
-  <h1 style="opacity: 1;">Terrorism in Israel</h1>
-  <h2 style="opacity: 1;"><strong>An Account of Tragedy And Hope</strong></h2>
+    <h1 style="opacity: 1;">Terrorism in Israel</h1>
+    <h2 style="opacity: 1;"><strong>An Account of Tragedy And Hope</strong></h2>
 
-  <h3>
-  <br>
-  <br>
-  By the
-  <a href="https://www.deplorablesnowflake.org/index" target="_blank"><strong>Deplorable Snowflake</strong></a>
-  team
-  <br>
-  <br>
-  <span class="dateline">1 April 2019</span>
-  </h3>
+    <h3>
+      <br>
+      <br>
+      By the
+      <a href="https://www.deplorablesnowflake.org/index" target="_blank"><strong>Deplorable Snowflake</strong></a>
+      team
+      <br>
+      <br>
+      <span class="dateline">5 April 2019</span>
+    </h3>
 
-</div>
+  </div>
 
-</div>
-
-
-
-
-<!-- Introduction -->
-
-<div id='sections-intro'>
-
-<div>
-  <p class="text">
-   <span class="text-decorate">S</span>ince its establishment as a country dating back to May 14th, 1948, the State of Israel has faced both unprecedented and unparalleled challenges unfamiliar to any nation or territory in modern times. Surrounded by countries who share an innate desire to wipe Israel off the map, the proverbial land of milk and honey remains confined in a constant state of apprehension and existential dread, sustained only by its allies and the willingness of its people to defend against those who threaten its very existence. Despite all of this, Israel remains one of the twenty first centuries most controversial and highly disputed topics, with members of the international community varying wildly in regards to their balance of allegiance towards Israel as a sovereign state and the plethora of political and socioeconomic issues that complicate the subject even further. 
-    </p>
-</div>
-
-<div>
-<p class="text">
-  The following data visualization makes no attempt in trying to resolve the intricate complexities of the present-day middle east quandary. Instead, we at the Deplorable Snowflake desire to inform our audience of some of the more captivating yet infamous terrorist attacks and accompanying statistics that have taken place since Israel’s inception as a country and hopefully serve as a jumping-off point for further knowledge and advocation down the road. 
- </p>
- </div>
-
- <div>
-<p class="text">
-  <span class="step-highlight3">Please enjoy the show. </span> 
- </p>
- </div>
-
- </div>
+  </div>
 
 
 
-<!-- Flight Animation Data Viz -->
 
-<div id="mapContainer" class="container-map">
+  <!-- Introduction -->
 
-<div id="map" style="position: sticky;" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+  <div id='sections-intro'>
+
+    <div>
+      <p class="text">
+        <span class="text-decorate">S</span>ince its establishment as a country dating back to May 14th, 1948, the State of Israel has faced both unprecedented and unparalleled challenges unfamiliar to any nation or territory in modern times.
+        Surrounded by countries who share an innate desire to wipe Israel off the map, the proverbial land of milk and honey remains confined in a constant state of apprehension and existential dread, sustained only by its allies and the willingness
+        of its people to defend against those who threaten its very existence. Despite all of this, Israel remains one of the twenty first centuries most controversial and highly disputed topics, with members of the international community varying
+        wildly in regards to their balance of allegiance towards Israel as a sovereign state and the plethora of political and socioeconomic issues that complicate the subject even further.
+      </p>
+    </div>
+
+    <div>
+      <p class="text">
+        The following data visualization makes no attempt in trying to resolve the intricate complexities of the present-day middle east quandary. Instead, we at the Deplorable Snowflake desire to inform our audience of some of the more captivating
+        yet infamous terrorist attacks and accompanying statistics that have taken place since Israel’s inception as a country and hopefully serve as a jumping-off point for further knowledge and advocation down the road.
+      </p>
+    </div>
+
+    <div>
+      <p class="text">
+        <span class="step-highlight3">Please enjoy the show. </span>
+      </p>
+    </div>
+
+  </div>
 
 
 
-<audio class="map-sounds" controls>
-  <source src="../static/data/israel/airplane.mp3" type="audio/mpeg">
-</audio>
+  <!-- Flight Animation Data Viz -->
 
-<!--
-<div id="boombox">         
+  <div id="mapContainer" class="container-map">
 
-  
+    <div id="map" style="position: sticky;" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+
+
+
+      <audio class="map-sounds" controls>
+        <source src="../static/data/israel/airplane.mp3" type="audio/mpeg">
+      </audio>
+
+      <!--
+<div id="boombox">
+
+
   <div class="boombox-handle"></div>
 
   <div class="boombox-body">
 
 
   <section class="master-controls">
-  
+
   <input type="range" id="volume" class="control-volume" min="0" max="2" value="1" list="gain-vals" step="0.01" data-action="volume" />
 
   <input type="range" id="panner" class="control-panner" list="pan-vals" min="-1" max="1" value="0" step="0.01" data-action="panner" />
-  
+
   </section>
- 
+
 
   <section class="tape">
 
-  <audio id="airplane" src="static/data/israel/airplane.mp3" crossorigin="anonymous" ></audio>  
+  <audio id="airplane" src="static/data/israel/airplane.mp3" crossorigin="anonymous" ></audio>
 
 
   <button data-playing="false" class="tape-controls-play" role="switch" aria-checked="false">
@@ -153,209 +168,232 @@ transform: translateX(-50%);">
   </section>
 
   </div>
-</div> 
-
---> 
-
 </div>
 
-<div id='sections'>
-        <div>
-            <h1>Operation Entebbe</h1>
-            <p class="text">
-                <span class="text-decorate">O</span>n June 27th, 1976, Air France Flight 139 carrying 246 mainly Jewish passengers and a crew of 12 departed from Tel Aviv, Israel. The flight flew to Athens, Greece where it picked up an additional 58 passengers and then departed for Paris. Just after takeoff, the flight was hijacked by two members of the radical organization known as the <strong> Popular Front for the Liberation of Palestine - External Operations (PFLP-EO) 
-                </strong> as well as two Germans from the German Revolutionary Cells. The hijackers diverted the plane to Benghazi, Libya where it was held on the ground for seven hours for refueling before leaving for Entebbe Airport in Uganda where they were greeted by dictator Idi Amin and the Uganda government who supported the hijacking. 
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                Acting under orders from their leader Wadie Hadad, the hijackers issued a demand consisting of a ransom of US$5 million as well as the release of 40 Palestinians and affiliated militants imprisoned in Israel as well as 13 other prisoners in 4 other countries in exchange for for the hostages. If the demands were not met by July 1st, just 3 days away, the hostages were to be executed immediately.
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                Over the course of the next 48 hours, the hijackers separated all Israelis and several non-Israeli Jews from the larger group and held them separately in a private room. On July 1st, after several days of excruciating negotiations, the Israeli government finally agreed to the terrorists’ demands and the deadline was extended to noon on July 4th. In the midst of the negotiations, 148 non-Israeli hostages, many of whom were women and children, were released and flown out to Paris. Of the original 258 travelers, ninety-four, mainly Israeli passengers along with the 12 member Air France crew remained as hostages and were threatened with death if the demands were not ultimately met.
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                Once it became obvious a peaceful resolution was not going to be met, the Israeli government gave the <span class="step-highlight1"> green light </span> for a confidential rescue mission led under Lt. Col. Joshua Shani. Israeli authorities secured permission from Kenya for the IDF task force to cross Kenyan airspace and refuel in order to provide safe passage on this rather long journey.
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                Taking off from Sharm El Sheikh, an Egyptian city on the southern tip of the Sinai Peninsula, the specialized task force numbering approximately 100 personnel flew over the Red Sea towards Entebbe, flying no higher than 100 feet in order to avoid detection by radar. 
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                On July 3rd 23:00 IST, the Israeli forces landed in Entebbe Airport and stormed the main hall of the airport building where the hostages were being held. An intense crossfire between the Israeli operatives and the hijackers ensued, with three hostages ultimately losing their lives in the process. Once the remaining hijackers were shot dead, the Israeli assault team returned to their aircraft to begin loading the hostages only to have Ugandan soldiers start shooting at them in the process. With Ugandan soldiers firing from the airport control tower, the Israeli commandos returned fire inflicting numerous casualties on the Ugandans. At least five commandos were wounded in the process with the Israeli unit commander Jonatan Netanyahu ultimately losing his life in the firefight. Once the Israelis finished loading the hostages as well as the body of Jonatan Netanyahu they immediately fled the airport for safe passage back home. 
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                <span class="step-highlight2">The entire operation lasted just under 53 minutes, with all 7 hijackers and between 33 and 45 Ugandans soldiers losing their lives in the process. Eleven Soviet built MiG-21 fighter planes of the Ugandan Air Force were destroyed on the ground, and ultimately 102 rescued hostages were flown to Israel via Nairobi, Kenya shortly after the raid. </span> 
-            </p>
-        </div>
+-->
+
     </div>
-</div>
+
+    <div id='sections'>
+      <div>
+        <h1>Operation Entebbe</h1>
+        <p class="text">
+          <span class="text-decorate">O</span>n June 27th, 1976, Air France Flight 139 carrying 246 mainly Jewish passengers and a crew of 12 departed from Tel Aviv, Israel. The flight flew to Athens, Greece where it picked up an additional 58
+          passengers and then departed for Paris. Just after takeoff, the flight was hijacked by two members of the radical organization known as the <strong> Popular Front for the Liberation of Palestine - External Operations (PFLP-EO)
+          </strong> as well as two Germans from the German Revolutionary Cells. The hijackers diverted the plane to Benghazi, Libya where it was held on the ground for seven hours for refueling before leaving for Entebbe Airport in Uganda where they
+          were greeted by dictator Idi Amin and the Uganda government who supported the hijacking.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          Acting under orders from their leader Wadie Hadad, the hijackers issued a demand consisting of a ransom of US$5 million as well as the release of 40 Palestinians and affiliated militants imprisoned in Israel as well as 13 other prisoners
+          in 4 other countries in exchange for for the hostages. If the demands were not met by July 1st, just 3 days away, the hostages were to be executed immediately.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          Over the course of the next 48 hours, the hijackers separated all Israelis and several non-Israeli Jews from the larger group and held them separately in a private room. On July 1st, after several days of excruciating negotiations, the
+          Israeli government finally agreed to the terrorists’ demands and the deadline was extended to noon on July 4th. In the midst of the negotiations, 148 non-Israeli hostages, many of whom were women and children, were released and flown out
+          to Paris. Of the original 258 travelers, ninety-four, mainly Israeli passengers along with the 12 member Air France crew remained as hostages and were threatened with death if the demands were not ultimately met.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          Once it became obvious a peaceful resolution was not going to be met, the Israeli government gave the <span class="step-highlight1"> green light </span> for a confidential rescue mission led under Lt. Col. Joshua Shani. Israeli authorities
+          secured permission from Kenya for the IDF task force to cross Kenyan airspace and refuel in order to provide safe passage on this rather long journey.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          Taking off from Sharm El Sheikh, an Egyptian city on the southern tip of the Sinai Peninsula, the specialized task force numbering approximately 100 personnel flew over the Red Sea towards Entebbe, flying no higher than 100 feet in order
+          to avoid detection by radar.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          On July 3rd 23:00 IST, the Israeli forces landed in Entebbe Airport and stormed the main hall of the airport building where the hostages were being held. An intense crossfire between the Israeli operatives and the hijackers ensued, with
+          three hostages ultimately losing their lives in the process. Once the remaining hijackers were shot dead, the Israeli assault team returned to their aircraft to begin loading the hostages only to have Ugandan soldiers start shooting at
+          them in the process. With Ugandan soldiers firing from the airport control tower, the Israeli commandos returned fire inflicting numerous casualties on the Ugandans. At least five commandos were wounded in the process with the Israeli unit
+          commander Jonatan Netanyahu ultimately losing his life in the firefight. Once the Israelis finished loading the hostages as well as the body of Jonatan Netanyahu they immediately fled the airport for safe passage back home.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          <span class="step-highlight2">The entire operation lasted just under 53 minutes, with all 7 hijackers and between 33 and 45 Ugandans soldiers losing their lives in the process. Eleven Soviet built MiG-21 fighter planes of the Ugandan Air
+            Force were destroyed on the ground, and ultimately 102 rescued hostages were flown to Israel via Nairobi, Kenya shortly after the raid. </span>
+        </p>
+      </div>
+    </div>
+  </div>
 
 
 
 
-<!-- Slope Graph -->
+  <!-- Slope Graph -->
 
-<div id="slopeContainer" class="container-slope">
+  <div id="slopeContainer" class="container-slope">
 
-<div id="slopeGraphContainer">
+    <div id="slopeGraphContainer">
 
-<div id="chart3"></div>
-<div id="explanation"></div>
-<div class="expl-text"></div>
+      <div id="chart3"></div>
+      <div id="explanation"></div>
+      <div class="expl-text"></div>
 
-<div id="clickerWrapper">
-  <div id="progress"></div>
-  <div id="progressButtonWrapper">
-  <div id="clickerBack" class="progressButton inactiveButton">Back</div>
-  <div class="space"> </div><div class="space"> </div>
-  <div id="circle_1" class="circleBase"></div><div class="space"> </div>
-  <div id="circle_2" class="circleBase mapView clickable"></div><div class="space"> </div>
-  <div class="space"> </div>
-  <!--
+      <div id="clickerWrapper">
+        <div id="progress"></div>
+        <div id="progressButtonWrapper">
+          <div id="clickerBack" class="progressButton inactiveButton">Back</div>
+          <div class="space"> </div>
+          <div class="space"> </div>
+          <div id="circle_1" class="circleBase"></div>
+          <div class="space"> </div>
+          <div id="circle_2" class="circleBase mapView clickable"></div>
+          <div class="space"> </div>
+          <div class="space"> </div>
+          <!--
   <div id="circle_3" class="circleBase"></div><div class="space"> </div>
   <div id="circle_4" class="circleBase slopeView clickable"></div><div class="space"> </div>
   <div class="space"> </div>
   -->
-  <div id="clickerFront" class="progressButton activeButton">Continue</div>
-  </div>
-</div> 
+          <div id="clickerFront" class="progressButton activeButton">Continue</div>
+        </div>
+      </div>
 
-  <div id="section">
-  <div id="sectionTitle"></div>
-  <div id="sectionText"></div>
+      <div id="section">
+        <div id="sectionTitle"></div>
+        <div id="sectionText"></div>
 
-  <div class="btn-group" data-toggle="buttons">
-  <label id="bombButton" class="btn btn-default active"><input type="radio" class="btn-options"> Bombing/Explosion </label>
-  <label id="assaultButton" class="btn btn-default"><input type="radio" class="btn-options"> Armed Assault </label>
-  <label id="assassinationButton" class="btn btn-default"><input type="radio" class="btn-options"> Assassination </label>
-  </div>
-
-  <div class="btn-group2" data-toggle="buttons">
-  <label id="fatalitiesButton" class="btn btn-default active"><input type="radio" class="btn-options"> Fatalities </label>
-  <label id="injuredButton" class="btn btn-default"><input type="radio" class="btn-options"> Injuries </label>
-  <label id="incidentsButton" class="btn btn-default"><input type="radio" class="btn-options"> Incidents </label>
-  </div>
-
-  </div>
-
-
-<div id="chart4"></div>
-
-
-  <div id="callOut">
-  <div id="callOutCity" class="callOutTitle"></div>
-  <div id="callOutrule"></div>
-
-    <img id="divImgurl" src="" alt="" />
-
-    <div id="divCountry"></div> 
-
-          <div id="divCity"></div>
-
-          <div id="divDate"></div>
-
-          <div id="divPerpetratorGroup"></div>
-
-          <div id="divAttackType"></div>
-
-          <div id="divTargetType"></div>
-
-          <div id="divFatalities"></div>
-      
-          <div id="divInjuries"></div> 
-
-    </div> 
-
-  </div>
-
-</div>
-
-
-
-<video id="westbank" width="100%" height="1100" autoplay loop muted>
-  <source src="../static/data/israel/westbank.mp4" type="video/mp4">
-</video>
-
-
-<!-- Spiral Graph -->
-
-<div id="spiralContainer" class="container-spiral">
-
-<div id="chart"></div> 
-
-<div id='sections3'>
-        <div>
-            <h1>A <em>Spiral</em> of <em>Sadness</em></h1>
+        <div class="btn-group" data-toggle="buttons">
+          <label id="bombButton" class="btn btn-default active"><input type="radio" class="btn-options"> Bombing/Explosion </label>
+          <label id="assaultButton" class="btn btn-default"><input type="radio" class="btn-options"> Armed Assault </label>
+          <label id="assassinationButton" class="btn btn-default"><input type="radio" class="btn-options"> Assassination </label>
         </div>
 
-        <div>
-            <p class="text">
-                <span class="text-decorate">T</span>he accompanying Spiral Plot, a rather unique representation of data that plots statistics on an Archimedean spiral as opposed to the more traditional cartesian axis, is based on data collected from the Israeli foreign ministry and a compiled list of 1,249 attacks at <a href="http://www.johnstonsarchive.net/terrorism/" target="_blank"> the johnstonarchive. </a> It is important to note that the list is not complete. The total reported casualties from terrorist attacks between 1950 - 2018 for the State of Israel includes 3,705 killed and 14,736 injured. Casualties in these terrorist attacks include at least 222 children killed and an additional 240 injured.
-            </p>
+        <div class="btn-group2" data-toggle="buttons">
+          <label id="fatalitiesButton" class="btn btn-default active"><input type="radio" class="btn-options"> Fatalities </label>
+          <label id="injuredButton" class="btn btn-default"><input type="radio" class="btn-options"> Injuries </label>
+          <label id="incidentsButton" class="btn btn-default"><input type="radio" class="btn-options"> Incidents </label>
         </div>
 
-        <div>
-          <p class="text">
-                As of today, the most violent stretch includes the 2001 - 2006 time period, coinciding with what is known as <span class="step-highlight2"> “The Second Intifada”</span>, a period of intensified Israeli-Palestinian violence which many Palestinians describe as an uprising against Israel. The violence first began back in September of 2000, after Ariel Sharon made an unannounced visit to the Temple Mount, seen what many considered as highly provocative. Palestinian demonstrators, throwing rocks at police in protest, were dispersed by the Israeli army using tear gas and rubber bullets. Soon after a high number of casualties resulted amongst civilians and combatants; the Palestinians by numerous suicide bombings and gunfire, the Israelis by tank, gunfire and air attacks. 
-          </p>
-        </div>
+      </div>
 
-        <div>
-            <p class="text">
-                It was during this time the <strong> West Bank Barrier </strong> began initial construction, serving as a separation barrier in the West Bank. While Israel considers the wall as a security barrier against terrorism, Palestinians call it a racial segregation or apartheid wall. At a total length of 440 miles, approximately 15% of the wall runs inside Israel, while the remaining 85% cuts at times 11 miles deep into West Bank, isolating about 9% of it, leaving an estimated 25,000 Palestinians isolated from the bulk of that territory. Despite the territorial disputes the wall inevitably presents, the Israeli government claims that the barrier has been overall effective, as the number of suicide bombings carried out from the West Bank fell from 73 to 12 between 2000 and 2006. While the barrier was initially presented as a temporary security measure in a time of heightened tensions, it has rapidly been associated with a future political border between Israel and Palestine. 
-            </p>
-        </div>
+
+      <div id="chart4"></div>
+
+
+      <div id="callOut">
+        <div id="callOutCity" class="callOutTitle"></div>
+        <div id="callOutrule"></div>
+
+        <img id="divImgurl" src="" alt="" />
+
+        <div id="divCountry"></div>
+
+        <div id="divCity"></div>
+
+        <div id="divDate"></div>
+
+        <div id="divPerpetratorGroup"></div>
+
+        <div id="divAttackType"></div>
+
+        <div id="divTargetType"></div>
+
+        <div id="divFatalities"></div>
+
+        <div id="divInjuries"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <video id="westbank" width="100%" height="1100" autoplay loop muted>
+    <source src="../static/data/israel/westbank.mp4" type="video/mp4">
+  </video>
+
+
+  <!-- Spiral Graph -->
+
+  <div id="spiralContainer" class="container-spiral">
+
+    <div id="chart"></div>
+
+    <div id='sections3'>
+      <div>
+        <h1>A <em>Spiral</em> of <em>Sadness</em></h1>
+      </div>
+
+      <div>
+        <p class="text">
+          <span class="text-decorate">T</span>he accompanying Spiral Plot, a rather unique representation of data that plots statistics on an Archimedean spiral as opposed to the more traditional cartesian axis, is based on data collected from the
+          Israeli foreign ministry and a compiled list of 1,249 attacks at <a href="http://www.johnstonsarchive.net/terrorism/" target="_blank"> the johnstonarchive. </a> It is important to note that the list is not complete. The total reported
+          casualties from terrorist attacks between 1950 - 2018 for the State of Israel includes 3,705 killed and 14,736 injured. Casualties in these terrorist attacks include at least 222 children killed and an additional 240 injured.
+        </p>
+      </div>
+
+      <div>
+        <p class="text">
+          As of today, the most violent stretch includes the 2001 - 2006 time period, coinciding with what is known as <span class="step-highlight2"> “The Second Intifada”</span>, a period of intensified Israeli-Palestinian violence which many
+          Palestinians describe as an uprising against Israel. The violence first began back in September of 2000, after Ariel Sharon made an unannounced visit to the Temple Mount, seen what many considered as highly provocative. Palestinian
+          demonstrators, throwing rocks at police in protest, were dispersed by the Israeli army using tear gas and rubber bullets. Soon after a high number of casualties resulted amongst civilians and combatants; the Palestinians by numerous
+          suicide bombings and gunfire, the Israelis by tank, gunfire and air attacks.
+        </p>
+      </div>
+
+      <div>
+        <p class="text">
+          It was during this time the <strong> West Bank Barrier </strong> began initial construction, serving as a separation barrier in the West Bank. While Israel considers the wall as a security barrier against terrorism, Palestinians call it a
+          racial segregation or apartheid wall. At a total length of 440 miles, approximately 15% of the wall runs inside Israel, while the remaining 85% cuts at times 11 miles deep into West Bank, isolating about 9% of it, leaving an estimated
+          25,000 Palestinians isolated from the bulk of that territory. Despite the territorial disputes the wall inevitably presents, the Israeli government claims that the barrier has been overall effective, as the number of suicide bombings
+          carried out from the West Bank fell from 73 to 12 between 2000 and 2006. While the barrier was initially presented as a temporary security measure in a time of heightened tensions, it has rapidly been associated with a future political
+          border between Israel and Palestine.
+        </p>
+      </div>
 
     </div>
   </div>
 
 
 
-<video id="irondome" width="100%" height="1000" autoplay loop muted>
-  <source src="../static/data/israel/irondome.mp4" type="video/mp4">
-</video>
+  <video id="irondome" width="100%" height="1000" autoplay loop muted>
+    <source src="../static/data/israel/irondome.mp4" type="video/mp4">
+  </video>
 
 
 
-<!-- Missle Animation Data Viz --> 
+  <!-- Missle Animation Data Viz -->
 
-<div id="missleContainer" class="container-missle">
+  <div id="missleContainer" class="container-missle">
 
-<div id="missleAnimationContainer" class="graph-scroll-active">
+    <div id="missleAnimationContainer" class="graph-scroll-active">
 
-<div id="value">0</div>
+      <div id="value">0</div>
 
-<audio id="rocket-sound" controls>
-  <source src="../static/data/israel/rocket.flac" type="audio/mpeg">
-</audio>
+      <audio id="rocket-sound" controls>
+        <source src="../static/data/israel/rocket.flac" type="audio/mpeg">
+      </audio>
 
-<!--
-<div id="boombox3">         
+      <!--
+<div id="boombox3">
 
-  
+
   <div class="boombox-handle"></div>
 
   <div class="boombox-body">
 
 
   <section class="master-controls">
-  
+
   <input type="range" id="volume" class="control-volume" min="0" max="2" value="1" list="gain-vals" step="0.01" data-action="volume" />
 
   <input type="range" id="panner" class="control-panner" list="pan-vals" min="-1" max="1" value="0" step="0.01" data-action="panner" />
-  
+
   </section>
- 
+
 
   <section class="tape">
 
@@ -370,319 +408,363 @@ transform: translateX(-50%);">
   </div>
 </div>
 
---> 
+-->
 
-<div id="firework"></div>
-<div id="firework2"></div>
-<div id="firework3"></div>
-<div id="firework4"></div>
-<div id="firework5"></div>
-<div id="firework6"></div>
-<div id="firework7"></div>
-<div id="firework8"></div>
-<div id="firework9"></div>
-<div id="firework10"></div> 
-
-
-<div id="arc-container">
-<div id="arcOne"></div>
-<div id="arcA"></div>
-<div id="arcB"></div>
-<div id="arcTwo"></div>
-<div id="arcTwoA"></div>
-<div id="arcTwoB"></div>
-<div id="arcThree"></div>
-<div id="arcThreeA"></div>
-<div id="arcThreeB"></div>
-<div id="arcFour"></div>
-<div id="arcFourA"></div>
-<div id="arcFourB"></div>
-<div id="arcFive"></div>
-<div id="arcFiveA"></div>
-<div id="arcFiveB"></div>
-<div id="arcSix"></div>
-<div id="arcSixA"></div>
-<div id="arcSixB"></div>
-<div id="arcSeven"></div>
-<div id="arcSevenA"></div>
-<div id="arcSevenB"></div>
-<div id="arcEight"></div>
-<div id="arcEightA"></div>
-<div id="arcEightB"></div>
-<div id="arcNine"></div>
-<div id="arcNineA"></div>
-<div id="arcNineB"></div>
-<div id="arcTen"></div>
-<div id="arcTenA"></div>
-<div id="arcTenB"></div>
-<div id="arcEleven"></div>
-<div id="arcElevenA"></div>
-<div id="arcElevenB"></div>
-<div id="arcTwelve"></div>
-<div id="arcTwelveA"></div>
-<div id="arcTwelveB"></div>
-<div id="arcThirteen"></div>
-<div id="arcThirteenA"></div>
-<div id="arcThirteenB"></div>
-<div id="arcFourteen"></div>
-<div id="arcFourteenA"></div>
-<div id="arcFourteenB"></div>
-<div id="arcFifteen"></div>
-<div id="arcFifteenA"></div>
-<div id="arcFifteenB"></div>
-<div id="arcSixteen"></div>
-<div id="arcSixteenA"></div>
-<div id="arcSixteenB"></div>
-</div>
+      <div class='firework' id="firework"></div>
+      <div class='firework' id="firework2"></div>
+      <div class='firework' id="firework3"></div>
+      <div class='firework' id="firework4"></div>
+      <div class='firework' id="firework5"></div>
+      <div class='firework' id="firework6"></div>
+      <div class='firework' id="firework7"></div>
+      <div class='firework' id="firework8"></div>
+      <div class='firework' id="firework9"></div>
+      <div class='firework' id="firework10"></div>
 
 
+      <div id="arc-container">
+        <div class="arc" id="arcOne"></div>
+        <div class="arc" id="arcA"></div>
+        <div class="arc" id="arcB"></div>
+        <div class="arc" id="arcTwo"></div>
+        <div class="arc" id="arcTwoA"></div>
+        <div class="arc" id="arcTwoB"></div>
+        <div class="arc" id="arcThree"></div>
+        <div class="arc" id="arcThreeA"></div>
+        <div class="arc" id="arcThreeB"></div>
+        <div class="arc" id="arcFour"></div>
+        <div class="arc" id="arcFourA"></div>
+        <div class="arc" id="arcFourB"></div>
+        <div class="arc" id="arcFive"></div>
+        <div class="arc" id="arcFiveA"></div>
+        <div class="arc" id="arcFiveB"></div>
+        <div class="arc" id="arcSix"></div>
+        <div class="arc" id="arcSixA"></div>
+        <div class="arc" id="arcSixB"></div>
+        <div class="arc" id="arcSeven"></div>
+        <div class="arc" id="arcSevenA"></div>
+        <div class="arc" id="arcSevenB"></div>
+        <div class="arc" id="arcEight"></div>
+        <div class="arc" id="arcEightA"></div>
+        <div class="arc" id="arcEightB"></div>
+        <div class="arc" id="arcNine"></div>
+        <div class="arc" id="arcNineA"></div>
+        <div class="arc" id="arcNineB"></div>
+        <div class="arc" id="arcTen"></div>
+        <div class="arc" id="arcTenA"></div>
+        <div class="arc" id="arcTenB"></div>
+        <div class="arc" id="arcEleven"></div>
+        <div class="arc" id="arcElevenA"></div>
+        <div class="arc" id="arcElevenB"></div>
+        <div class="arc" id="arcTwelve"></div>
+        <div class="arc" id="arcTwelveA"></div>
+        <div class="arc" id="arcTwelveB"></div>
+        <div class="arc" id="arcThirteen"></div>
+        <div class="arc" id="arcThirteenA"></div>
+        <div class="arc" id="arcThirteenB"></div>
+        <div class="arc" id="arcFourteen"></div>
+        <div class="arc" id="arcFourteenA"></div>
+        <div class="arc" id="arcFourteenB"></div>
+        <div class="arc" id="arcFifteen"></div>
+        <div class="arc" id="arcFifteenA"></div>
+        <div class="arc" id="arcFifteenB"></div>
+        <div class="arc" id="arcSixteen"></div>
+        <div class="arc" id="arcSixteenA"></div>
+        <div class="arc" id="arcSixteenB"></div>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket">
-       <polygon class="flame-move" id="Path-2" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-8" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-2-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-2-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container2" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket2">
-       <polygon class="flame-move" id="Path-3" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-9" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-3-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-3-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy2" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket">
+            <polygon class="flame-move" id="Path-2" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-8" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-2-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-2-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container3" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket3">
-       <polygon class="flame-move" id="Path-4" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-10" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-4-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-4-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy3" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container2" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket2">
+            <polygon class="flame-move" id="Path-3" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-9" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-3-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-3-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy2" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container4" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket4">
-       <polygon class="flame-move" id="Path-5" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-11" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-5-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-5-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy4" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container3" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket3">
+            <polygon class="flame-move" id="Path-4" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-10" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-4-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-4-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy3" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container5" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket5">
-       <polygon class="flame-move" id="Path-6" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-12" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-6-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-6-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy5" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container4" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket4">
+            <polygon class="flame-move" id="Path-5" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-11" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-5-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-5-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy4" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container6" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket6">
-       <polygon class="flame-move" id="Path-7" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-13" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-7-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-7-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy6" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container5" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket5">
+            <polygon class="flame-move" id="Path-6" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-12" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-6-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-6-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy5" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container7" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket7">
-       <polygon class="flame-move" id="Path-8" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-14" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-8-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-8-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy7" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container6" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket6">
+            <polygon class="flame-move" id="Path-7" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-13" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-7-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-7-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy6" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container8" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket8">
-       <polygon class="flame-move" id="Path-9" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-15" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-9-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-9-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy8" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container7" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket7">
+            <polygon class="flame-move" id="Path-8" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-14" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-8-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-8-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy7" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container9" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket9">
-       <polygon class="flame-move" id="Path-10" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-16" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-10-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-10-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy9" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container8" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket8">
+            <polygon class="flame-move" id="Path-9" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-15" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-9-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-9-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy8" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
 
-<div class="canvas" class="spaceship-container">
-  <svg id="rocket-container10" width="11px" height="55px" viewBox="0 0 11 55">
-    <g id="rocket10">
-       <polygon class="flame-move" id="Path-11" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
-         <polygon id="Rectangle-17" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
-                <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z" id="Path-11-Copy-3" fill="#546B7C"></path>
-                <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z" id="Path-11-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
-                <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z" id="Combined-Shape-Copy10" fill="#FFFFFF"></path>
-    </g>
-   </svg>
-</div>
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container9" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket9">
+            <polygon class="flame-move" id="Path-10" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-16" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-10-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-10-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy9" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
 
-</div>
+
+      <div class="canvas" class="spaceship-container">
+        <svg id="rocket-container10" width="11px" height="55px" viewBox="0 0 11 55">
+          <g id="rocket10">
+            <polygon class="flame-move" id="Path-11" fill="#FFB914" points="4.33113325 30.9988397 5.52162438 54.7288392 6.61158311 30.9988397"></polygon>
+            <polygon id="Rectangle-17" fill="#86240C" points="3 29 8 29 7.66344736 31 3.38228707 31"></polygon>
+            <path d="M3.29538202,24.0004897 C3.29538202,24.0004897 0.724655534,25.40952 0.222970933,26.512686 C-0.278713667,27.6158519 0.222970933,30.756486 0.222970933,30.756486 C0.222970933,30.756486 1.07942895,29.7177413 1.64769101,29.2611171 C2.21595307,28.8044929 3.29538202,28.287665 3.29538202,28.287665 L3.29538202,24.0004897 Z"
+              id="Path-11-Copy-3" fill="#546B7C"></path>
+            <path d="M10.9475559,24.0004897 C10.9475559,24.0004897 8.37682945,25.40952 7.87514485,26.512686 C7.37346025,27.6158519 7.87514485,30.756486 7.87514485,30.756486 C7.87514485,30.756486 8.73160286,29.7177413 9.29986492,29.2611171 C9.86812698,28.8044929 10.9475559,28.287665 10.9475559,28.287665 L10.9475559,24.0004897 Z"
+              id="Path-11-Copy-4" fill="#546B7C" transform="translate(9.299865, 27.378488) scale(-1, 1) translate(-9.299865, -27.378488) "></path>
+            <path d="M3.04746713,29.546875 C2.3947312,26.5484437 1.98939014,22.2246713 1.98939014,17.0412693 C1.98939014,6.84589693 5.49202694,0.232183562 5.49202694,0.232183562 C5.49202694,0.232183562 8.99466373,6.84589693 8.99466373,17.0412693 C8.99466373,22.2246713 8.58932267,26.5484437 7.93658674,29.546875 L3.04746713,29.546875 Z"
+              id="Combined-Shape-Copy10" fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </div>
+
+    </div>
 
 
-<div id='sections4'>
+    <div id='sections4'>
+
+      <div>
+        <h1>Gaza - Israel Clashes: <br> <em>November 2018</em></h1>
 
         <div>
-          <h1>Gaza - Israel Clashes: <br> <em>November 2018</em></h1> 
-
-          <div>
 
           <aside class="element-pullquote">
-          <span class="inline-quote inline-icon inline-tone-fill">
-          <svg width="17" height="10" viewBox="0 0 33 20" class="inline-tone-fill_svg inline-quote_svg inline-icon_svg">
-          <path d="M9.002 20c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053A9.968 9.968 0 0 1 4.001 6.5C4.064 2.97 7.414.937 11.003 1l-1-1C3.98 0 .098 4.447.002 10.006c-.097 5.557 3.35 9.892 9 9.994zm17 0c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053a9.968 9.968 0 0 1-.113-1.553c.063-3.53 3.413-5.563 7.002-5.5l-1-1c-6.022 0-9.904 4.447-10 10.006-.097 5.557 3.35 9.892 9 9.994z"></path>
-          </svg>
-          </span>
-          <blockquote>
-          <p class="quoteCredit"> 
-          Israel ... “will do whatever it takes” to defend itself. 
-          </p>
-          </blockquote>
-          <span class="inline-quote inline-icon closing inline-tone-fill">
-          <svg width="17" height="10" viewBox="0 0 33 20" class="closing__svg inline-tone-fill__svg inline-quote__svg inline-icon__svg">
-          <path d="M9.002 20c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053A9.968 9.968 0 0 1 4.001 6.5C4.064 2.97 7.414.937 11.003 1l-1-1C3.98 0 .098 4.447.002 10.006c-.097 5.557 3.35 9.892 9 9.994zm17 0c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053a9.968 9.968 0 0 1-.113-1.553c.063-3.53 3.413-5.563 7.002-5.5l-1-1c-6.022 0-9.904 4.447-10 10.006-.097 5.557 3.35 9.892 9 9.994z"></path>
-          </svg>
-          </span>
-          <blockquote>
-          <p class="quoteCredit">
-          Michael Oren, Israeli Deputy Minister  
-          </p>
-          </blockquote>
+            <span class="inline-quote inline-icon inline-tone-fill">
+              <svg width="17" height="10" viewBox="0 0 33 20" class="inline-tone-fill_svg inline-quote_svg inline-icon_svg">
+                <path d="M9.002 20c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053A9.968 9.968 0 0 1 4.001 6.5C4.064 2.97 7.414.937 11.003 1l-1-1C3.98 0 .098 4.447.002 10.006c-.097 5.557 3.35 9.892 9 9.994zm17 0c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053a9.968 9.968 0 0 1-.113-1.553c.063-3.53 3.413-5.563 7.002-5.5l-1-1c-6.022 0-9.904 4.447-10 10.006-.097 5.557 3.35 9.892 9 9.994z"></path>
+              </svg>
+            </span>
+            <blockquote>
+              <p class="quoteCredit">
+                Israel ... “will do whatever it takes” to defend itself.
+              </p>
+            </blockquote>
+            <span class="inline-quote inline-icon closing inline-tone-fill">
+              <svg width="17" height="10" viewBox="0 0 33 20" class="closing__svg inline-tone-fill__svg inline-quote__svg inline-icon__svg">
+                <path d="M9.002 20c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053A9.968 9.968 0 0 1 4.001 6.5C4.064 2.97 7.414.937 11.003 1l-1-1C3.98 0 .098 4.447.002 10.006c-.097 5.557 3.35 9.892 9 9.994zm17 0c3.85.068 6.932-3.104 7-6.994.068-3.892-3.15-6.937-7-7.006-2.016-.036-3.59.694-4.888 2.053a9.968 9.968 0 0 1-.113-1.553c.063-3.53 3.413-5.563 7.002-5.5l-1-1c-6.022 0-9.904 4.447-10 10.006-.097 5.557 3.35 9.892 9 9.994z"></path>
+              </svg>
+            </span>
+            <blockquote>
+              <p class="quoteCredit">
+                Michael Oren, Israeli Deputy Minister
+              </p>
+            </blockquote>
           </aside>
 
-          </div>
-
-
-
-            <p class="text">
-            <span class="text-decorate">I</span>
-               n November of 2018, a botched Israeli covert operation carried out in the Khan Yunis area of the Gaza Strip ended up in the killing of seven Palestinian militants and one Israel soldier. This unfortunate event led to the “Gaza-Israel clashes”, one of the worst 48 hour exchanges of fire in Israel’s history as a nation. 
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                On November 11th, Israeli special forces entered Gaza in a <span class="step-highlight4"> blue Volkswagen car </span> through one of the official border crossings, two of whom were dressed in traditional Muslim women’s clothing. Just three kilometers into Gazan territory the car is spotted and then stopped at a Hamas checkpoint for questioning. While the Israelis claimed to be working as NGO workers, the Palestinians remained suspicious and decided to bring the Israelis into custody for further questioning, resulting in open fire on both sides with the Israelis speeding away from the scene. The car opens fire and speeds through numerous roadblocks, with Israeli tanks and aircraft providing additional backup to provide cover for the vehicle’s escape. Some time after the operatives stepped out of the vehicle to face their pursuers in an open gunfight, ultimately killing all of their attackers and escaping in a helicopter where the Israeli Air Force’s elite Unit 669 is waiting for them. Once the soldiers were carefully extracted, the vehicle was struck by dozens of Israeli rockets and completely destroyed.
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                The Israeli Defense Forces (IDF) quickly attempted to dispel rumors that one of their own was taken prisoner and tried to fight off allegations that it was trying to kill or abduct terrorists. Rather, IDF Chief Gadi Eizenkot said, it was done in order to “…strengthen Israeli security” and it was “a very meaningful operation to Israel’s security”. Hamas spokesperson Fawzi Barhoum, denounced the event as a “cowardly Israeli attack”
-            </p>
-        </div>
-         <div>
-            <p class="text">
-                On Sunday November 11th, 2018, just a few hours after the failed operation, 17 rockets were fired from Gaza into Israel of which three were shot down, resulting in sirens to sound all across southern Israel and Israeli authorities being forced to redirect the flight path of aircraft landing in Ben Gurion Airport as a precautionary measure. In communities near the Gaza border, classes were cancelled and farmers were advised to stop working in their fields.
-            </p>
-        </div>
-         <div>
-            <p class="text">
-                On the morning of Monday, November 12th, 2018, Musa Abu-Marzouq, a senior member of Hamas, stated that the prior operations “exposed the Israeli occupation’s hypocritical behavior with the international community” and the organization issued a statement “announcing the beginning of bombardment of the enemy’s settlements” as a “response to yesterday’s crime”. <strong> As a result, 300 projectiles, of which 60 were intercepted, were fired from Gaza into Israel during the day wounding up to 9 civilians. </strong> In the afternoon in Kfar Aza, a kibbutz in southern Israel, a Kornet anti-tank missile hit a bus transporting soldiers, critically injuring a 19 year old Israeli solder standing nearby. Over the course of the night into Tuesday, a rocket directly hit a residential building in Ashkelon, killing a Palestinian man from Hebron and wounding two women. Israeli forces struck more than 70 targets in Gaza, among them the building hosting Hamas’ tv broadcasting station Al-Aqsa and attacked a ship belonging to Hamas in the Nuseirat port in southern Gaza. Three Palestinians were killed by tank fire into Gaza and nine were wounded. <span class="step-highlight2"> Commenting on the violence, Israeli deputy minister Michael Oren said that Israel “will do whatever it takes” to defend itself and that he “expects the world to stand with us”</span>. In the following 24 hours, three more Palestinians were killed and three more wounded by Israeli airstrikes during the day.
-            </p>
-        </div>
-         <div>
-            <p class="text">
-              On Tuesday, after hours of long and strategic negotiations with the assistance of Egyptian mediation, an ambiguous yet unanimous cease fire was agreed upon by both sides, ending what was surely to be one of the most intense 48 hour periods in Israeli history. 
-            </p>
         </div>
 
-        <!--
+
+
+        <p class="text">
+          <span class="text-decorate">I</span>
+          n November of 2018, a botched Israeli covert operation carried out in the Khan Yunis area of the Gaza Strip ended up in the killing of seven Palestinian militants and one Israel soldier. This unfortunate event led to the “Gaza-Israel
+          clashes”, one of the worst 48 hour exchanges of fire in Israel’s history as a nation.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          On November 11th, Israeli special forces entered Gaza in a <span class="step-highlight4"> blue Volkswagen car </span> through one of the official border crossings, two of whom were dressed in traditional Muslim women’s clothing. Just three
+          kilometers into Gazan territory the car is spotted and then stopped at a Hamas checkpoint for questioning. While the Israelis claimed to be working as NGO workers, the Palestinians remained suspicious and decided to bring the Israelis into
+          custody for further questioning, resulting in open fire on both sides with the Israelis speeding away from the scene. The car opens fire and speeds through numerous roadblocks, with Israeli tanks and aircraft providing additional backup to
+          provide cover for the vehicle’s escape. Some time after the operatives stepped out of the vehicle to face their pursuers in an open gunfight, ultimately killing all of their attackers and escaping in a helicopter where the Israeli Air
+          Force’s elite Unit 669 is waiting for them. Once the soldiers were carefully extracted, the vehicle was struck by dozens of Israeli rockets and completely destroyed.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          The Israeli Defense Forces (IDF) quickly attempted to dispel rumors that one of their own was taken prisoner and tried to fight off allegations that it was trying to kill or abduct terrorists. Rather, IDF Chief Gadi Eizenkot said, it was
+          done in order to “…strengthen Israeli security” and it was “a very meaningful operation to Israel’s security”. Hamas spokesperson Fawzi Barhoum, denounced the event as a “cowardly Israeli attack”
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          On Sunday November 11th, 2018, just a few hours after the failed operation, 17 rockets were fired from Gaza into Israel of which three were shot down, resulting in sirens to sound all across southern Israel and Israeli authorities being
+          forced to redirect the flight path of aircraft landing in Ben Gurion Airport as a precautionary measure. In communities near the Gaza border, classes were cancelled and farmers were advised to stop working in their fields.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          On the morning of Monday, November 12th, 2018, Musa Abu-Marzouq, a senior member of Hamas, stated that the prior operations “exposed the Israeli occupation’s hypocritical behavior with the international community” and the organization
+          issued a statement “announcing the beginning of bombardment of the enemy’s settlements” as a “response to yesterday’s crime”. <strong> As a result, 300 projectiles, of which 60 were intercepted, were fired from Gaza into Israel during the
+            day wounding up to 9 civilians. </strong> In the afternoon in Kfar Aza, a kibbutz in southern Israel, a Kornet anti-tank missile hit a bus transporting soldiers, critically injuring a 19 year old Israeli solder standing nearby. Over the
+          course of the night into Tuesday, a rocket directly hit a residential building in Ashkelon, killing a Palestinian man from Hebron and wounding two women. Israeli forces struck more than 70 targets in Gaza, among them the building hosting
+          Hamas’ tv broadcasting station Al-Aqsa and attacked a ship belonging to Hamas in the Nuseirat port in southern Gaza. Three Palestinians were killed by tank fire into Gaza and nine were wounded. <span class="step-highlight2"> Commenting on
+            the violence, Israeli deputy minister Michael Oren said that Israel “will do whatever it takes” to defend itself and that he “expects the world to stand with us”</span>. In the following 24 hours, three more Palestinians were killed and
+          three more wounded by Israeli airstrikes during the day.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          On Tuesday, after hours of long and strategic negotiations with the assistance of Egyptian mediation, an ambiguous yet unanimous cease fire was agreed upon by both sides, ending what was surely to be one of the most intense 48 hour periods
+          in Israeli history.
+        </p>
+      </div>
+
+      <!--
         <div>
         <iframe src="https://giphy.com/embed/r3jUif2i1tqI8" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen>
         </iframe>
         </div>
-        --> 
+        -->
 
     </div>
-</div>
+  </div>
 
 
-<video id="dizengoff" width="100%" height="1000" autoplay loop muted>
-  <source src="../static/data/israel/dizengoff.mp4" type="video/mp4">
-</video>
+  <video id="dizengoff" width="100%" height="1000" autoplay loop muted>
+    <source src="../static/data/israel/dizengoff.mp4" type="video/mp4">
+  </video>
 
 
-<!-- Bus Animation Data Viz -->
+  <!-- Bus Animation Data Viz -->
 
-<div id="map3Container" class="container-map3">
+  <div id="map3Container" class="container-map3">
 
-<div id="map3" style="position: sticky;" class="leaflet-container2 leaflet-touch2 leaflet-retina2 leaflet-fade-anim2 leaflet-grab2 leaflet-touch-drag2 leaflet-touch-zoom2" tabindex="0"> 
+    <div id="map3" style="position: sticky;" class="leaflet-container2 leaflet-touch2 leaflet-retina2 leaflet-fade-anim2 leaflet-grab2 leaflet-touch-drag2 leaflet-touch-zoom2" tabindex="0">
 
-<audio class="map-sounds" controls>
-  <source src="../static/data/israel/bus-sound.mp3" type="audio/mpeg">
-</audio>
+      <audio class="map-sounds" controls>
+        <source src="../static/data/israel/bus-sound.mp3" type="audio/mpeg">
+      </audio>
 
-<!--
-  
-<div id="boombox2">         
+      <!--
 
-  
+<div id="boombox2">
+
+
   <div class="boombox-handle"></div>
 
   <div class="boombox-body">
 
 
   <section class="master-controls">
-  
+
   <input type="range" id="volume" class="control-volume" min="0" max="2" value="1" list="gain-vals" step="0.01" data-action="volume" />
 
   <input type="range" id="panner" class="control-panner" list="pan-vals" min="-1" max="1" value="0" step="0.01" data-action="panner" />
-  
+
   </section>
- 
+
 
   <section class="tape">
 
-  <audio id="bus" src="static/data/israel/bus-crash.mp3" crossorigin="anonymous" ></audio> 
+  <audio id="bus" src="static/data/israel/bus-crash.mp3" crossorigin="anonymous" ></audio>
 
   <button data-playing="false" class="tape-controls-play" role="switch" aria-checked="false">
   <span>Play |</span>
@@ -693,35 +775,40 @@ transform: translateX(-50%);">
   </div>
 </div>
 
---> 
+-->
 
-</div>
-
-<div id='sections5'>
-        <div>
-            <h1>Dizengoff Street Bus Bombing</h1>
-            <p class="text">
-            <span class="text-decorate">O</span>
-                n the morning of October 19th, 1994, while morning rush hour traffic was near its peak,  a member of the Samaria battalion (of the Izz ad-Din al-Qassam Brigade) Muatab Mukadi, under the planned instruction of Hamas chief Yahya Ayyash, drove Hamas affiliate Abdel Rahim al-Souwi to one of the crowded commuter bus’s first designated stops. It is said Al-Souwi chose an aisle seat on the left side of the bus, and placed a carefully constructed bomb using an Egyptian land mine packed with twenty kilograms of military strength TNT surrounded by nails and screws in a brown paper bag by his feet. 
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                At approximately 9:00 AM, as the bus was slowing down for a stop 100 meters north of Dizengoff Square, an iconic public square on Tel Aviv’s main shopping boulevard, al-Souwi detonated the bomb, ultimately killing 21 Israelis and one Dutch national and injuring 50 others. <strong> The explosion was powerful enough to lift the bus off its chassis with the heat melting the physical fiberglass of the bus frame. </strong> Actual limbs were projected like missiles into the seating area of nearby restaurants and storefronts, while rescue and burial teams worked tirelessly to collect the casualties spread throughout the scene. At the time of the attack, the Dizengoff Street bus bombing became the deadliest suicide bombing in Israeli history and the first successful attack in Tel Aviv since the inception of the Israeli state in 1948. It was the third claimed by the Islamic Resistance Movement, also known as Hamas, in just 10 days. 
-            </p>
-        </div>
     </div>
-</div>
+
+    <div id='sections5'>
+      <div>
+        <h1>Dizengoff Street Bus Bombing</h1>
+        <p class="text">
+          <span class="text-decorate">O</span>
+          n the morning of October 19th, 1994, while morning rush hour traffic was near its peak, a member of the Samaria battalion (of the Izz ad-Din al-Qassam Brigade) Muatab Mukadi, under the planned instruction of Hamas chief Yahya Ayyash, drove
+          Hamas affiliate Abdel Rahim al-Souwi to one of the crowded commuter bus’s first designated stops. It is said Al-Souwi chose an aisle seat on the left side of the bus, and placed a carefully constructed bomb using an Egyptian land mine
+          packed with twenty kilograms of military strength TNT surrounded by nails and screws in a brown paper bag by his feet.
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          At approximately 9:00 AM, as the bus was slowing down for a stop 100 meters north of Dizengoff Square, an iconic public square on Tel Aviv’s main shopping boulevard, al-Souwi detonated the bomb, ultimately killing 21 Israelis and one Dutch
+          national and injuring 50 others. <strong> The explosion was powerful enough to lift the bus off its chassis with the heat melting the physical fiberglass of the bus frame. </strong> Actual limbs were projected like missiles into the
+          seating area of nearby restaurants and storefronts, while rescue and burial teams worked tirelessly to collect the casualties spread throughout the scene. At the time of the attack, the Dizengoff Street bus bombing became the deadliest
+          suicide bombing in Israeli history and the first successful attack in Tel Aviv since the inception of the Israeli state in 1948. It was the third claimed by the Islamic Resistance Movement, also known as Hamas, in just 10 days.
+        </p>
+      </div>
+    </div>
+  </div>
 
 
 
-<!-- Stream Graph -->
+  <!-- Stream Graph -->
 
-<div id="streamContainer" class="container-stream">
+  <div id="streamContainer" class="container-stream">
 
-<div class="chart"></div>   
+    <div class="chart"></div>
 
-<!--
+    <!--
 <svg width="1200" height="400">
 <rect x="230" y="0" height="10" width="10" fill="rgb(179, 0, 0)" />
 <rect x="375" y="0" height="10" width="10" fill="rgb(227, 74, 51)" />
@@ -730,62 +817,67 @@ transform: translateX(-50%);">
 <rect x="825" y="0" height="10" width="10" fill="rgb(253, 212, 158)" />
 <rect x="1000" y="0" height="10" width="10" fill="rgb(254, 240, 217)" />
 </svg>
---> 
+-->
 
-<div id='sections7'>
-        <div>
-            <h1>Terrorism <span class="step-highlight7">Across</span> Terrorists</h1>
-            <p class="text">
-            <span class="text-decorate">T</span>
-                he following Stream Graph includes data collected, cleaned and analyzed from the <a href="https://www.start.umd.edu/gtd/" target="_blank"> Global Terrorism Database (GTD), </a> an open-source database including information on terrorist events around the world from 1970 through 2017. This particular visual representation includes data from the years 2000 to 2017 for 6 of the most notorious terrorist organizations and factions in the Middle East, including <span class="step-highlight2"> the Al-Aqsa Martyrs Bridage, Hamas (Islamic Resistance Movement), Hezbollah, Palestinian Extremists, the Palestinian Islamic Jihad (PIJ) and the Popular Front for the Liberation of Palestine (PFLP). </span>
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                The size of each individual stream shape is proportional to the number of incidents each individual group committed during this timeline (with incidents being a total figured calculated by adding the number of fatalities and injuries each group committed each year). While the number of incidents amongst organizations remained proportional near the beginning of the millennia (interrupted by a quiet yet brief period of peace between 2009 - 2011 following the conclusion of the Gaza War), the stream graph ends with an overwhelming surface area for what the GTD describes as 
-                <strong>“Palestinian Extremists”. </strong> While there is no actual terrorist organization that goes by such an identity, it is imperative to note that this faction most likely includes those who had no particular allegiance to an established organization yet resorted to violence most closely resembling guerrilla warfare. 
-            </p>
-        </div>
+    <div id='sections7'>
+      <div>
+        <h1>Terrorism <span class="step-highlight7">Across</span> Terrorists</h1>
+        <p class="text">
+          <span class="text-decorate">T</span>
+          he following Stream Graph includes data collected, cleaned and analyzed from the <a href="https://www.start.umd.edu/gtd/" target="_blank"> Global Terrorism Database (GTD), </a> an open-source database including information on terrorist
+          events around the world from 1970 through 2017. This particular visual representation includes data from the years 2000 to 2017 for 6 of the most notorious terrorist organizations and factions in the Middle East, including <span class="step-highlight2">
+            the Al-Aqsa Martyrs Bridage, Hamas (Islamic Resistance Movement), Hezbollah, Palestinian Extremists, the Palestinian Islamic Jihad (PIJ) and the Popular Front for the Liberation of Palestine (PFLP). </span>
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          The size of each individual stream shape is proportional to the number of incidents each individual group committed during this timeline (with incidents being a total figured calculated by adding the number of fatalities and injuries each
+          group committed each year). While the number of incidents amongst organizations remained proportional near the beginning of the millennia (interrupted by a quiet yet brief period of peace between 2009 - 2011 following the conclusion of the
+          Gaza War), the stream graph ends with an overwhelming surface area for what the GTD describes as
+          <strong>“Palestinian Extremists”. </strong> While there is no actual terrorist organization that goes by such an identity, it is imperative to note that this faction most likely includes those who had no particular allegiance to an
+          established organization yet resorted to violence most closely resembling guerrilla warfare.
+        </p>
+      </div>
 
     </div>
-</div>
+  </div>
 
 
 
 
 
 
-<!-- Line Graph -->
+  <!-- Line Graph -->
 
-<div id="lineContainer" class="container-line">
+  <div id="lineContainer" class="container-line">
 
-<div id="svgContainer">
+    <div id="svgContainer">
 
-<div id="svgLines">
-<div id="svg"></div>       
-<div id="svg2"></div>
-<div id="svg3"></div>
-</div>
+      <div id="svgLines">
+        <div id="svg"></div>
+        <div id="svg2"></div>
+        <div id="svg3"></div>
+      </div>
 
-<div class="btn-group3" data-toggle="buttons">
-  <label id="incidentsButton1" class="btn btn-default active"><input type="radio" class="btn-options"> Incidents </label>
-  <label id="fatalitiesButton1" class="btn btn-default"><input type="radio" class="btn-options"> Fatalities </label>
-  <label id="injuriesButton1" class="btn btn-default"><input type="radio" class="btn-options"> Injuries </label>
-</div>
+      <div class="btn-group3" data-toggle="buttons">
+        <label id="incidentsButton1" class="btn btn-default active"><input type="radio" class="btn-options"> Incidents </label>
+        <label id="fatalitiesButton1" class="btn btn-default"><input type="radio" class="btn-options"> Fatalities </label>
+        <label id="injuriesButton1" class="btn btn-default"><input type="radio" class="btn-options"> Injuries </label>
+      </div>
 
-<!--
+      <!--
 <div class="btn-group3" data-toggle="buttons">
 <button type="button" id="incidentsButton1" class="btn btn-default active">Total Incidents</button>
 <button type="button" id="fatalitiesButton1" class="btn btn-default">Total Fatalities</button>
-<button type="button" id="injuriesButton1" class="btn btn-default">Total Injuries</button> 
-</div> 
+<button type="button" id="injuriesButton1" class="btn btn-default">Total Injuries</button>
+</div>
 -->
 
-</div> 
+    </div>
 
 
 
-<!--
+    <!--
 <div class="legendLine">
      <div id="legendIsrael"> <p class="country-name"><span class="key-dot israel"></span>Israel</p> </div>
      <div id="legendUnitedStates"> <p class="country-name"><span class="key-dot unitedStates"></span>United States</p> </div>
@@ -797,98 +889,101 @@ transform: translateX(-50%);">
      <div id="legendLebanon"> <p class="country-name"><span class="key-dot lebanon"></span>Lebanon</p> </div>
      <div id="legendJordan"> <p class="country-name"><span class="key-dot jordan"></span>Jordan</p> </div>
      <div id="legendPalestine"> <p class="country-name"><span class="key-dot palestine"></span>Palestine</p> </div>
-</div>   
+</div>
 -->
 
 
-<div class="callOutContainer">
+    <div class="callOutContainer">
 
-<div id="callOut1.5">
-   <div id="divCountry1.5"></div>
-   <div id="divDate1.5"></div>
-   <div id="divIncidents1.5"></div>
-</div>
+      <div id="callOut1.5">
+        <div id="divCountry1.5"></div>
+        <div id="divDate1.5"></div>
+        <div id="divIncidents1.5"></div>
+      </div>
 
-<div id="callOut2">
-   <div id="divCountry2"></div>
-   <div id="divDate2"></div>
-   <div id="divFatalities2"></div>
-</div>
+      <div id="callOut2">
+        <div id="divCountry2"></div>
+        <div id="divDate2"></div>
+        <div id="divFatalities2"></div>
+      </div>
 
-<div id="callOut3">
-   <div id="divCountry3"></div>
-   <div id="divDate3"></div>
-   <div id="divInjuries3"></div>
-</div>
-
-</div> 
-
-
-<div id='sections6'>
-        <div>
-            <h1><span class="step-highlight9">Different</span> <span class="step-highlight8">Colored</span> <span class="step-highlight6"> Flags:</span> <br> <span class="step-highlight7">Same</span> Colored <span class="step-highlight5">Blood </span></h1>
-            <p class="text">
-            <span class="text-decorate">T</span>
-                he accompanying interactive line chart includes data once again collected from the Global Terrorism Database (GTD) and is decisively split amongst 3 independent variables including incidents, fatalities and injuries. Each line represents a different country where terrorism has taken place between the years 1970 - 2017 including <span class="step-highlight2"> Israel, United States, Iran, Saudi Arabia, Turkey, Egypt, Syria, Lebanon, Jordan and Palestine. 
-                </span> 
-            </p>
-        </div>
-        <div>
-            <p class="text">
-                While the data fluctuated wildly between timelines and nations, a few notable observations include <strong> the Syrian Civil War, the failed 2016 Turkish coup d’etat attempt and the September 11th, 2001 attacks on the United States. 
-                </strong>
-            </p>
-        </div>
+      <div id="callOut3">
+        <div id="divCountry3"></div>
+        <div id="divDate3"></div>
+        <div id="divInjuries3"></div>
+      </div>
 
     </div>
-</div>
+
+
+    <div id='sections6'>
+      <div>
+        <h1><span class="step-highlight9">Different</span> <span class="step-highlight8">Colored</span> <span class="step-highlight6"> Flags:</span> <br> <span class="step-highlight7">Same</span> Colored <span class="step-highlight5">Blood </span></h1>
+        <p class="text">
+          <span class="text-decorate">T</span>
+          he accompanying interactive line chart includes data once again collected from the Global Terrorism Database (GTD) and is decisively split amongst 3 independent variables including incidents, fatalities and injuries. Each line represents a
+          different country where terrorism has taken place between the years 1970 - 2017 including <span class="step-highlight2"> Israel, United States, Iran, Saudi Arabia, Turkey, Egypt, Syria, Lebanon, Jordan and Palestine.
+          </span>
+        </p>
+      </div>
+      <div>
+        <p class="text">
+          While the data fluctuated wildly between timelines and nations, a few notable observations include <strong> the Syrian Civil War, the failed 2016 Turkish coup d’etat attempt and the September 11th, 2001 attacks on the United States.
+          </strong>
+        </p>
+      </div>
+
+    </div>
+  </div>
 
 
 
 
-<!-- Conculsion -->
+  <!-- Conculsion -->
 
-<div id='sections-conclusion'>
+  <div id='sections-conclusion'>
 
-<div>
- <h1>Where Do We Go From Here ?</h1>
-<p class="text">
-  Despite the peril and confrontation that faces the country on a continuous basis, Israel has managed to define itself again and again as a beacon of hope for all those who are willing to stand up for democracy in the face of great corruption and evil. Quoting an anonymous member of the Mossad to better shed light on how much is always at stake, "We are good at our task because the alternative is too horrifying to contemplate...".  
- </p>
-</div>
+    <div>
+      <h1>Where Do We Go From Here ?</h1>
+      <p class="text">
+        Despite the peril and confrontation that faces the country on a continuous basis, Israel has managed to define itself again and again as a beacon of hope for all those who are willing to stand up for democracy in the face of great corruption
+        and evil. Quoting an anonymous member of the Mossad to better shed light on how much is always at stake, "We are good at our task because the alternative is too horrifying to contemplate...".
+      </p>
+    </div>
 
-<div>
-<p class="text">
-  Thank you for watching.
- </p>
- </div>
-
-
-
-<video id="gaza" width="100%" height="1000" autoplay loop muted>
-  <source src="../static/data/israel/gaza.mp4" type="video/mp4"> 
-</video> 
-
-<h1 id="outro">
-  <br>
-  <br>
-  The
-  <a href="https://www.deplorablesnowflake.org/index" target="_blank">Deplorable Snowflake</a>
-  Team
-  <br>
-  <br>
-</h1>
-
-<img src="../static/data/israel/american.jpg" id="primary-logo" />
-
-</div>
-
-  
+    <div>
+      <p class="text">
+        Thank you for watching.
+      </p>
+    </div>
 
 
-<!-- Scripts -->
+
+    <video id="gaza" width="100%" height="1000" autoplay loop muted>
+      <source src="../static/data/israel/gaza.mp4" type="video/mp4"> 
+    </video>
+
+    <h1 id="outro">
+      <br>
+      <br>
+      The
+      <a href="https://www.deplorablesnowflake.org/index" target="_blank">Deplorable Snowflake</a>
+      Team
+      <br>
+      <br>
+    </h1>
+
+    <img src="../static/data/israel/american.jpg" id="primary-logo" /> 
+
+  </div>
+
+
+
+
+  <!-- Scripts -->
 <script src="../static/data/israel/slopeGraph.js"></script> 
 <script src="../static/data/israel/missle.js"></script>
+<!--<script src="../static/data/israel/missle2.js"></script>--> 
 <script src="../static/data/israel/lineGraph.js"></script>
 <script src="../static/data/israel/streamGraph.js"></script>
 <script src="../static/data/israel/spiralGraph.js"></script>
@@ -896,285 +991,280 @@ transform: translateX(-50%);">
 <script src="../static/data/israel/flightPath.js"></script>
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
+    ///////////////////////////////// General Helper Functions
 
 
+    ///////////////////////////////// Counter
 
-
-///////////////////////////////// General Helper Functions
-
-
-///////////////////////////////// Counter 
-
-function animateValue(id, start, end, duration) {
-    var range = end - start;
-    var current = start;
-    var increment = end > start? 1 : -1;
-    var stepTime = Math.abs(Math.floor(duration / range));
-    var obj = document.getElementById(id);
-    var timer = setInterval(function() {
+    function animateValue(id, start, end, duration) {
+      var range = end - start;
+      var current = start;
+      var increment = end > start ? 1 : -1;
+      var stepTime = Math.abs(Math.floor(duration / range));
+      var obj = document.getElementById(id);
+      var timer = setInterval(function() {
         current += increment;
         obj.innerHTML = current;
         if (current == end) {
-            clearInterval(timer);
+          clearInterval(timer);
         }
-    }, stepTime);
-}
+      }, stepTime);
+    }
 
-var animateValueTriggered = false;
+    var animateValueTriggered = false;
 
-$(window).on('scroll', function() {
-    if (animateValueTriggered === false) {
+    $(window).on('scroll', function() {
+      if (animateValueTriggered === false) {
         var yScroll = window.pageYOffset;
         var triggerPoint = $('.container-missle').offset().top - 300;
         if (yScroll >= triggerPoint) {
-            animateValue("value", 0, 300, 48000);
-            animateValueTriggered = true;
+          animateValue("value", 0, 300, 48000);
+          animateValueTriggered = true;
         }
-    }
+      }
 
 
-});
-
-
-
-///////////////////////////////// graphScroll()
-
-graphScroll()
-        .container(d3.select('.container-map'))
-        .graph(svg)
-        .eventId('uniqueId1')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-map #sections > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('#map svg');
-
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //(csvData1);
-            }
-
-            console.log(i)
-        });
-
-
-graphScroll()
-        .container(d3.select('.container-slope'))
-        .graph(svg)                                   // svg2???
-        .eventId('uniqueId2')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-slope #sections2 > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('#slopeGraphContainer svg'); 
-            //const graphSection = d3.select('#svg2 svg')
-            //const graphSection = d3.select('#svg3 svg');
-
-
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //drawDataTwo(csvData2);
-            }
-
-            console.log(i)
-        });
-
-
-graphScroll()
-        .container(d3.select('.container-spiral'))
-        .graph(svg)                                   // svg2???
-        .eventId('uniqueId3')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-spiral #sections3 > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('#chart svg');
-
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //drawDataTwo(csvData2);
-            }
-
-            console.log(i)
-        });
-
-/*
-d3.graphScroll()
-        .container(d3.select('.container-missle'))
-        .graph(svg)                                   // svg2???
-        .eventId('uniqueId4')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-missle #sections4 > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('#missleAnimationContainer svg'); 
-            //const graphSection = d3.select('#svg2 svg')
-            //const graphSection = d3.select('#svg3 svg');
-
-
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //drawDataTwo(csvData2);
-            }
-
-            console.log(i)
-        });
-*/
-
-
-graphScroll()
-        .container(d3.select('.container-missle'))
-        .graph(d3.selectAll("#missleAnimationContainer"))                             
-        .eventId('uniqueId4')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-missle #sections4 > div'))
-        .on('active', function(){
-          if (document.getElementById(missleAnimationContainer).className == "graph-scroll-active") {
-            svg.selectAll("#svg")
-                    .transition()
-                    .duration(1000);
-            
-        }});
+    });
 
 
 
+    ///////////////////////////////// graphScroll()
+
+    graphScroll()
+      .container(d3.select('.container-map'))
+      .graph(svg)
+      .eventId('uniqueId1') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-map #sections > div'))
+      .on('active', function(i) {
+        const graphSection = d3.select('#map svg');
+
+        if (i === 0) {
+          graphSection.attr('opacity', 0);
+        }
+        if (i === 1) {
+          graphSection.attr('opacity', 1);
+          svg.selectAll("*").remove();
+          //(csvData1);
+        }
+
+        console.log(i)
+      });
 
 
-graphScroll()
-        .container(d3.select('.container-map3'))
-        .graph(svg)                                   // svg2???
-        .eventId('uniqueId5')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-map3 #sections5 > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('#map3 svg');
-
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //drawDataTwo(csvData2);
-            }
-
-            console.log(i)
-        });
+    graphScroll()
+      .container(d3.select('.container-slope'))
+      .graph(svg) // svg2???
+      .eventId('uniqueId2') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-slope #sections2 > div'))
+      .on('active', function(i) {
+        const graphSection = d3.select('#slopeGraphContainer svg');
+        //const graphSection = d3.select('#svg2 svg')
+        //const graphSection = d3.select('#svg3 svg');
 
 
+        if (i === 0) {
+          graphSection.attr('opacity', 0);
+        }
+        if (i === 1) {
+          graphSection.attr('opacity', 1);
+          svg.selectAll("*").remove();
+          //drawDataTwo(csvData2);
+        }
 
-graphScroll()
-        .container(d3.select('.container-line'))
-        .graph(svg)                                   // svg2???
-        .eventId('uniqueId6')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-line #sections6 > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('#svgContainer svg'); 
-            //const graphSection = d3.select('#svg2 svg')
-            //const graphSection = d3.select('#svg3 svg');
-
-
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //drawDataTwo(csvData2);
-            }
-
-            console.log(i)
-        });
+        console.log(i)
+      });
 
 
+    graphScroll()
+      .container(d3.select('.container-spiral'))
+      .graph(svg) // svg2???
+      .eventId('uniqueId3') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-spiral #sections3 > div'))
+      .on('active', function(i) {
+        const graphSection = d3.select('#chart svg');
 
-graphScroll()
-        .container(d3.select('.container-stream'))
-        .graph(svg)                                   // svg2???
-        .eventId('uniqueId7')  // namespace for scroll and resize events
-        .sections(d3.selectAll('.container-stream #sections7 > div'))
-        .on('active', function(i){
-            const graphSection = d3.select('.chart svg');
+        if (i === 0) {
+          graphSection.attr('opacity', 0);
+        }
+        if (i === 1) {
+          graphSection.attr('opacity', 1);
+          svg.selectAll("*").remove();
+          //drawDataTwo(csvData2);
+        }
 
-            if (i === 0) {
-                graphSection.attr('opacity', 0);
-            }
-            if (i === 1) {
-                graphSection.attr('opacity', 1);
-                svg.selectAll("*").remove();
-                //drawDataTwo(csvData2);
-            }
+        console.log(i)
+      });
 
-            console.log(i)
-        });
+    /*
+    d3.graphScroll()
+            .container(d3.select('.container-missle'))
+            .graph(svg)                                   // svg2???
+            .eventId('uniqueId4')  // namespace for scroll and resize events
+            .sections(d3.selectAll('.container-missle #sections4 > div'))
+            .on('active', function(i){
+                const graphSection = d3.select('#missleAnimationContainer svg');
+                //const graphSection = d3.select('#svg2 svg')
+                //const graphSection = d3.select('#svg3 svg');
+
+
+                if (i === 0) {
+                    graphSection.attr('opacity', 0);
+                }
+                if (i === 1) {
+                    graphSection.attr('opacity', 1);
+                    svg.selectAll("*").remove();
+                    //drawDataTwo(csvData2);
+                }
+
+                console.log(i)
+            });
+    */
+
+
+    graphScroll()
+      .container(d3.select('.container-missle'))
+      .graph(d3.selectAll("#missleAnimationContainer"))
+      .eventId('uniqueId4') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-missle #sections4 > div'))
+      .on('active', function() {
+        if (document.getElementById(missleAnimationContainer).className == "graph-scroll-active") {
+          svg.selectAll("#svg")
+            .transition()
+            .duration(1000);
+
+        }
+      });
 
 
 
 
-///////////////////////////////// Web Audio API
 
-// for legacy browsers
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-// load some sound
-const audioElement = document.querySelector('audio');
-const track = audioCtx.createMediaElementSource(audioElement);
-const playButton = document.querySelector('.tape-controls-play');
-// play pause audio
-playButton.addEventListener('click', function() {
-  // check if context is in suspended state (autoplay policy)
-  if (audioCtx.state === 'suspended') {
-  audioCtx.resume();
-  }
-  if (this.dataset.playing === 'false') {
-  audioElement.play();
-  this.dataset.playing = 'true';
-  // if track is playing pause it
-  } else if (this.dataset.playing === 'true') {
-  audioElement.pause();
-  this.dataset.playing = 'false';
-  }
-  let state = this.getAttribute('aria-checked') === "true" ? true : false;
-  this.setAttribute( 'aria-checked', state ? "false" : "true" );
-}, false);
-// if track ends
-audioElement.addEventListener('ended', () => {
-  playButton.dataset.playing = 'false';
-  playButton.setAttribute( "aria-checked", "false" );
-}, false);
-// volume
-const gainNode = audioCtx.createGain();
-const volumeControl = document.querySelector('[data-action="volume"]');
-volumeControl.addEventListener('input', function() {
-  gainNode.gain.value = this.value;
-}, false);
-// panning
-const pannerOptions = {pan: 0};
-const panner = new StereoPannerNode(audioCtx, pannerOptions);
-const pannerControl = document.querySelector('[data-action="panner"]');
-pannerControl.addEventListener('input', function() {
-  panner.pan.value = this.value;
-}, false);
-// connect our graph
-track.connect(gainNode).connect(panner).connect(audioCtx.destination);
+    graphScroll()
+      .container(d3.select('.container-map3'))
+      .graph(svg) // svg2???
+      .eventId('uniqueId5') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-map3 #sections5 > div'))
+      .on('active', function(i) {
+        const graphSection = d3.select('#map3 svg');
+
+        if (i === 0) {
+          graphSection.attr('opacity', 0);
+        }
+        if (i === 1) {
+          graphSection.attr('opacity', 1);
+          svg.selectAll("*").remove();
+          //drawDataTwo(csvData2);
+        }
+
+        console.log(i)
+      });
 
 
 
+    graphScroll()
+      .container(d3.select('.container-line'))
+      .graph(svg) // svg2???
+      .eventId('uniqueId6') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-line #sections6 > div'))
+      .on('active', function(i) {
+        const graphSection = d3.select('#svgContainer svg');
+        //const graphSection = d3.select('#svg2 svg')
+        //const graphSection = d3.select('#svg3 svg');
 
-</script>
+
+        if (i === 0) {
+          graphSection.attr('opacity', 0);
+        }
+        if (i === 1) {
+          graphSection.attr('opacity', 1);
+          svg.selectAll("*").remove();
+          //drawDataTwo(csvData2);
+        }
+
+        console.log(i)
+      });
+
+
+
+    graphScroll()
+      .container(d3.select('.container-stream'))
+      .graph(svg) // svg2???
+      .eventId('uniqueId7') // namespace for scroll and resize events
+      .sections(d3.selectAll('.container-stream #sections7 > div'))
+      .on('active', function(i) {
+        const graphSection = d3.select('.chart svg');
+
+        if (i === 0) {
+          graphSection.attr('opacity', 0);
+        }
+        if (i === 1) {
+          graphSection.attr('opacity', 1);
+          svg.selectAll("*").remove();
+          //drawDataTwo(csvData2);
+        }
+
+        console.log(i)
+      });
+
+
+
+
+    ///////////////////////////////// Web Audio API
+
+    // for legacy browsers
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    // load some sound
+    const audioElement = document.querySelector('audio');
+    const track = audioCtx.createMediaElementSource(audioElement);
+    const playButton = document.querySelector('.tape-controls-play');
+    // play pause audio
+    playButton.addEventListener('click', function() {
+      // check if context is in suspended state (autoplay policy)
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (this.dataset.playing === 'false') {
+        audioElement.play();
+        this.dataset.playing = 'true';
+        // if track is playing pause it
+      } else if (this.dataset.playing === 'true') {
+        audioElement.pause();
+        this.dataset.playing = 'false';
+      }
+      let state = this.getAttribute('aria-checked') === "true" ? true : false;
+      this.setAttribute('aria-checked', state ? "false" : "true");
+    }, false);
+    // if track ends
+    audioElement.addEventListener('ended', () => {
+      playButton.dataset.playing = 'false';
+      playButton.setAttribute("aria-checked", "false");
+    }, false);
+    // volume
+    const gainNode = audioCtx.createGain();
+    const volumeControl = document.querySelector('[data-action="volume"]');
+    volumeControl.addEventListener('input', function() {
+      gainNode.gain.value = this.value;
+    }, false);
+    // panning
+    const pannerOptions = {
+      pan: 0
+    };
+    const panner = new StereoPannerNode(audioCtx, pannerOptions);
+    const pannerControl = document.querySelector('[data-action="panner"]');
+    pannerControl.addEventListener('input', function() {
+      panner.pan.value = this.value;
+    }, false);
+    // connect our graph
+    track.connect(gainNode).connect(panner).connect(audioCtx.destination);
+  </script>
 
 </body>
 
 
 </html>
 
+{% endblock %} 
 
-{% endblock %}
 
