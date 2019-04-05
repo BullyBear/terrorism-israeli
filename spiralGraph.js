@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////// SPIRAL GRAPH JS  
+/////////////////////////////////////////////////// SPIRAL GRAPH JS
 
 
 
@@ -14,26 +14,32 @@
       return numSpirals * Math.PI * r;
     };
 
-    var color = d3.scale.category10();  
+    var color = d3.scale.category10();
 
     var r = d3.min([width, height]) / 2 - 40;
 
     var radius = d3.scale.linear()
       .domain([start, end])
-      .range([40, r]); 
+      .range([40, r]);
 
+    var clientWidth = document.documentElement.clientWidth;
     var svg = d3.select("#chart").append("svg")
-      .attr("width", width + margin.right + margin.left)
+
+     .attr("width", clientWidth)
+     .attr("id", "spiralChart")
       .attr("height", height + margin.left + margin.right)
+      .attr("viewBox", "0 0 " + 750 + " " + 750)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
+
+
     var points = d3.range(start, end + 0.001, (end - start) / 1000);
 
-    var spiral = d3.svg.line.radial() 
+    var spiral = d3.svg.line.radial()
       .interpolate("cardinal")
       .angle(theta)
-      .radius(radius); 
+      .radius(radius);
 
     var path = svg.append("path")
       .datum(points)
@@ -44,15 +50,15 @@
       .style("stroke", "steelblue");
 
     var spiralLength = path.node().getTotalLength(),
-        //N = 365, 
+        //N = 365,
         N = 200,
         barWidth = (spiralLength / N) - 1;
 
 
     function type(d) {
       d.Date = timeScale(d.Date);
-      d.ID = +d.ID; 
-      d.Incidents = +d.Incidents; 
+      d.ID = +d.ID;
+      d.Incidents = +d.Incidents;
       return d;
     }
 
@@ -69,9 +75,9 @@
        d3.min(spiralData, function (d) { return d.Killed, d.Injured, d.Attacks; }),
        d3.max(spiralData, function(d){ return d.Killed, d.Injured, d.Attacks; }),
        ])
-       .range([0, (r / numSpirals) - 50]); 
+       .range([0, (r / numSpirals) - 50]);
        //.range([0, 20]);
-       
+
 
 
     svg.selectAll("rect")
@@ -79,15 +85,15 @@
       .enter()
       .append("rect")
       .attr("x", function(d,i){
-        
+
         var linePer = timeScale(d.Date),
             posOnLine = path.node().getPointAtLength(linePer),
             angleOnLine = path.node().getPointAtLength(linePer - barWidth);
-      
+
         d.linePer = linePer; // % distance are on the spiral
         d.x = posOnLine.x; // x postion on the spiral
         d.y = posOnLine.y; // y position on the spiral
-        
+
         d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angle at the spiral position
 
         return d.x;
@@ -99,18 +105,18 @@
         return barWidth;
       })
       .attr("height", function(d){
-        return yScale(d.Killed, d.Injured, d.Attacks); 
+        return yScale(d.Killed, d.Injured, d.Attacks);
         //return yScale(d.Killed);
 
       })
 
-      .style("fill", function(d){return color(d.ID);}) 
+      .style("fill", function(d){return color(d.ID);})
       .style("stroke", "none")
       .attr("transform", function(d){
         return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; // rotate the bar
       });
 
-      
+
       svg.append("text")
           .attr("id", "titleSpiral")
           .attr("y", -300)
@@ -128,12 +134,12 @@
           .style("stroke", "black")
           //.style("stroke-opacity", .1)
           .style("fill", "black");
-       
 
-    
+
+
     // add Date labels
     //var tF = d3.timeFormat("%b %Y"),
-    var tF = d3.time.format("%b %Y"), 
+    var tF = d3.time.format("%b %Y"),
         firstInMonth = {};
 
     svg.selectAll("text")
@@ -146,7 +152,7 @@
       .append("textPath")
 
       // only add for the first of each month
-      
+
       .filter(function(d){
         //var sd = tF(d.Date);
         var sd = type(d.Date);
@@ -158,14 +164,12 @@
       })
       .text(function(d){
         //return tF(d.Date);
-          return type(d.Date); 
+          return type(d.Date);
       })
-       
+
       // place text along spiral
       .attr("xlink:href", "#spiral")
       .style("fill", "grey")
       .attr("startOffset", function(d){
         return ((d.linePer / spiralLength) * 100) + "%";
       })
-
-

@@ -1,8 +1,8 @@
-/////////////////////////////////////////////////////     STREAM GRAPH JS   
+/////////////////////////////////////////////////////     STREAM GRAPH JS
 
 
 
-chart("static/data/israel/streamGraphDataNew.csv", "orange"); 
+chart("static/data/israel/streamGraphDataNew.csv", "orange");
 
 var datearray = [];
 var colorrange = [];
@@ -20,7 +20,7 @@ else if (color == "pink") {
 else if (color == "orange") {
   colorrange = ["#B30000", "#E34A33", "#FC8D59", "#FDBB84", "#FDD49E", "#FEF0D9"];
 }
-strokecolor = colorrange[0]; 
+strokecolor = colorrange[0];
 
 var format = d3.time.format("%Y");
 
@@ -69,13 +69,14 @@ var area = d3.svg.area()
 var svg = d3.select(".chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var graph = d3.csv(csvpath, function(data) {
   data.forEach(function(d) {
     d.DATE = format.parse(d.DATE);
-    //d.DATE = d.DATE; 
+    //d.DATE = d.DATE;
     d.INCIDENTS = +d.INCIDENTS;
   });
 
@@ -91,11 +92,11 @@ var graph = d3.csv(csvpath, function(data) {
       .attr("d", function(d) { return area(d.values); })
       .style("fill", function(d, i) { return z(i); });
 
-   
+
   svg.append("g")
       .attr("class", "y axis")
       .attr("transform", "translate(" + width + ", 0)")
-      .call(yAxis.orient("right")); 
+      .call(yAxis.orient("right"));
 
 
 
@@ -130,7 +131,7 @@ var graph = d3.csv(csvpath, function(data) {
           .attr("y2", 190)
           .attr("stroke-width", 1)
           .attr("stroke", "black");
-    
+
     svg.append("text")
           .attr("id", "label3")
           .attr("y", 150)
@@ -246,6 +247,3 @@ var graph = d3.csv(csvpath, function(data) {
 
 });
 }
-
-
-

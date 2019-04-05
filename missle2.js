@@ -13,10 +13,11 @@ var widthFirework = 960,
     randomY = d3.random.normal(heightFirework/2, 80);
 
 
-
+var clientWidth = document.documentElement.clientWidth;
 var firework = d3.select("#firework").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                        .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                        .attr("width", clientWidth )
+                        .attr("height", 500);
 
 var dataFirework = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -26,8 +27,9 @@ var circlesFirework = firework.selectAll("circle").data(dataFirework).enter()
 
 
 var firework2 = d3.select("#firework2").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                          .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                          .attr("width", clientWidth )
+                          .attr("height", 500);
 
 var dataFirework2 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -37,8 +39,9 @@ var circlesFirework2 = firework2.selectAll("circle").data(dataFirework2).enter()
 
 
 var firework3 = d3.select("#firework3").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                          .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                          .attr("width", clientWidth )
+                          .attr("height", 500);
 
 var dataFirework3 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -48,8 +51,9 @@ var circlesFirework3 = firework3.selectAll("circle").data(dataFirework3).enter()
 
 
 var firework4 = d3.select("#firework4").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                      .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                      .attr("width", clientWidth )
+                      .attr("height", 500);
 
 var dataFirework4 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -58,8 +62,9 @@ var circlesFirework4 = firework4.selectAll("circle").data(dataFirework4).enter()
                         .append("circle");
 
 var firework5 = d3.select("#firework5").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                        .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                        .attr("width", clientWidth )
+                        .attr("height", 500);
 
 var dataFirework5 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -68,8 +73,9 @@ var circlesFirework5 = firework5.selectAll("circle").data(dataFirework5).enter()
                         .append("circle");
 
 var firework6 = d3.select("#firework6").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                      .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                      .attr("width", clientWidth )
+                      .attr("height", 500);
 
 var dataFirework6 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -78,8 +84,9 @@ var circlesFirework6 = firework6.selectAll("circle").data(dataFirework6).enter()
                         .append("circle");
 
 var firework7 = d3.select("#firework7").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                        .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                        .attr("width", clientWidth )
+                        .attr("height", 500);
 
 var dataFirework7 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -88,8 +95,9 @@ var circlesFirework7 = firework7.selectAll("circle").data(dataFirework7).enter()
                         .append("circle");
 
 var firework8 = d3.select("#firework8").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                        .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                        .attr("width", clientWidth )
+                        .attr("height", 500);
 
 var dataFirework8 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -98,8 +106,9 @@ var circlesFirework8 = firework8.selectAll("circle").data(dataFirework8).enter()
                         .append("circle");
 
 var firework9 = d3.select("#firework9").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                      .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                      .attr("width", clientWidth )
+                      .attr("height", 500);
 
 var dataFirework9 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -108,8 +117,9 @@ var circlesFirework9 = firework9.selectAll("circle").data(dataFirework9).enter()
                         .append("circle");
 
 var firework10 = d3.select("#firework10").append("svg")
-                        .attr("width", widthFirework)
-                        .attr("height", heightFirework);
+                        .attr("viewBox", "0 0 " + widthFirework + " " + heightFirework)
+                        .attr("width", clientWidth )
+                        .attr("height", 500);
 
 var dataFirework10 = d3.range(100).map(function() { return {x: 950, y: -200}; });
 
@@ -1238,8 +1248,9 @@ function render(innerRadius) {
 
   var svg = d3.select("#arcOne").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
     var data = [
@@ -1374,8 +1385,9 @@ function renderA(innerRadius) {
 
   var svg = d3.select("#arcA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
     var data = [
@@ -1423,8 +1435,9 @@ function renderB(innerRadius) {
 
   var svg = d3.select("#arcB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
     var data = [
@@ -1475,8 +1488,9 @@ function render2(innerRadius) {
 
   var svg = d3.select("#arcTwo").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -1614,8 +1628,9 @@ function render2A(innerRadius) {
 
   var svg = d3.select("#arcTwoA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -1666,8 +1681,9 @@ function render2B(innerRadius) {
 
   var svg = d3.select("#arcTwoB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -1720,8 +1736,9 @@ function render3(innerRadius) {
 
   var svg = d3.select("#arcThree").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -1862,8 +1879,9 @@ function render3A(innerRadius) {
 
   var svg = d3.select("#arcThreeA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -1914,8 +1932,9 @@ function render3B(innerRadius) {
 
   var svg = d3.select("#arcThreeB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -1966,8 +1985,9 @@ function render4(innerRadius) {
 
   var svg = d3.select("#arcFour").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2177,8 +2197,9 @@ function render4A(innerRadius) {
 
   var svg = d3.select("#arcFourA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2231,8 +2252,9 @@ function render4B(innerRadius) {
 
   var svg = d3.select("#arcFourB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2285,8 +2307,9 @@ function render5(innerRadius) {
 
   var svg = d3.select("#arcFive").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2424,8 +2447,9 @@ function render5A(innerRadius) {
 
   var svg = d3.select("#arcFiveA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2476,9 +2500,9 @@ function render5B(innerRadius) {
         colors = d3.scale.category20();
 
   var svg = d3.select("#arcFiveB").append("svg")
-        //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+  .attr("viewBox", "0 0 " + width + " " + height)
+  .attr("width", clientWidth)
+  .attr("height", height);
 
 
 
@@ -2534,8 +2558,9 @@ function render6(innerRadius) {
 
   var svg = d3.select("#arcSix").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2675,8 +2700,9 @@ function render6A(innerRadius) {
 
   var svg = d3.select("#arcSixA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2726,8 +2752,9 @@ function render6B(innerRadius) {
 
   var svg = d3.select("#arcSixB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2778,8 +2805,9 @@ function render7(innerRadius) {
 
   var svg = d3.select("#arcSeven").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2922,8 +2950,9 @@ function render7A(innerRadius) {
 
   var svg = d3.select("#arcSevenA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -2974,8 +3003,9 @@ function render7B(innerRadius) {
 
   var svg = d3.select("#arcSevenB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3026,8 +3056,9 @@ function render8(innerRadius) {
 
   var svg = d3.select("#arcEight").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3168,8 +3199,9 @@ function render8A(innerRadius) {
 
   var svg = d3.select("#arcEightA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3219,8 +3251,9 @@ function render8B(innerRadius) {
 
   var svg = d3.select("#arcEightB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3271,8 +3304,9 @@ function render9(innerRadius) {
 
   var svg = d3.select("#arcNine").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3413,8 +3447,9 @@ function render9A(innerRadius) {
 
   var svg = d3.select("#arcNineA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3464,8 +3499,9 @@ function render9B(innerRadius) {
 
   var svg = d3.select("#arcNineB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3518,8 +3554,9 @@ function render10(innerRadius) {
 
   var svg = d3.select("#arcTen").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3663,8 +3700,9 @@ function render10A(innerRadius) {
 
   var svg = d3.select("#arcTenA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3717,8 +3755,9 @@ function render10B(innerRadius) {
 
   var svg = d3.select("#arcTenB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -3777,8 +3816,9 @@ function render11(innerRadius) {
 
   var svg = d3.select("#arcEleven").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
         //.attr("x", 175)
         //.attr("y", 155);
 
@@ -3926,8 +3966,9 @@ function render11A(innerRadius) {
 
   var svg = d3.select("#arcElevenA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
         //.attr("x", 175)
         //.attr("y", 155);
 
@@ -3987,8 +4028,9 @@ function render11B(innerRadius) {
 
   var svg = d3.select("#arcElevenB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
         //.attr("x", 175)
         //.attr("y", 155);
 
@@ -4050,8 +4092,9 @@ function render12(innerRadius) {
 
   var svg = d3.select("#arcTwelve").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -4192,8 +4235,9 @@ function render12A(innerRadius) {
 
   var svg = d3.select("#arcTwelveA").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -4245,8 +4289,9 @@ function render12B(innerRadius) {
 
   var svg = d3.select("#arcTwelveB").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
@@ -4300,8 +4345,9 @@ function render13(innerRadius) {
 
   var svg = d3.select("#arcThirteen").append("svg")
         //.attr("class", "pie")
-        .attr("height", height)
-        .attr("width", width);
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("width", clientWidth)
+        .attr("height", height);
 
 
 
